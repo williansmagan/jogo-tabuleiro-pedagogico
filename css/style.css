@@ -10,6 +10,9 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
+    padding-bottom: 60px; /* Adiciona um padding na base do body igual ou maior que a altura do rodapé */
+    /* Ajuste este valor conforme a altura real do seu rodapé */
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total do body */
 }
 
 .tela {
@@ -540,4 +543,22 @@ button:disabled {
 .btn-perigo:hover {
     background-color: #c82333; /* Vermelho mais escuro no hover */
     border-color: #bd2130;
+}
+
+#rodape-principal {
+    position: fixed; /* Fixa o rodapé na janela de visualização */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333; /* Cor de fundo escura para o rodapé */
+    color: #f0f0f0; /* Cor de texto clara */
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.8em;
+    z-index: 1001; /* Garante que fique acima da maioria dos outros conteúdos, mas abaixo de modais se necessário */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* Sombra sutil no topo */
+}
+
+#rodape-principal p {
+    margin: 3px 0; /* Pouca margem entre os parágrafos do rodapé */
 }
