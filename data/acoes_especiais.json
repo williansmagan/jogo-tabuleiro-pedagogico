@@ -1,0 +1,247 @@
+[
+  {
+    "id": "av1",
+    "text": "AVANCE 1 CASA!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveRelative", 
+    "value": 1
+  },
+  {
+    "id": "av2",
+    "text": "AVANCE 2 CASAS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveRelative", 
+    "value": 2
+  },
+  {
+    "id": "av3",
+    "text": "AVANCE 3 CASAS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveRelative", 
+    "value": 3
+  },
+  {
+    "id": "av4",
+    "text": "AVANCE 4 CASAS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveRelative", 
+    "value": 4
+  },
+  {
+    "id": "av5",
+    "text": "AVANCE 5 CASAS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveRelative", 
+    "value": 5
+  },
+  {
+    "id": "vo1",
+    "text": "VOLTE 1 CASA!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveRelative", 
+    "value": -1
+  },
+  {
+    "id": "vo2",
+    "text": "VOLTE 2 CASAS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveRelative", 
+    "value": -2
+  },
+  {
+    "id": "vo3",
+    "text": "VOLTE 3 CASAS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveRelative", 
+    "value": -3
+  },
+  {
+    "id": "vo4",
+    "text": "VOLTE 4 CASAS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveRelative", 
+    "value": -4
+  },
+  {
+    "id": "vo5",
+    "text": "VOLTE 5 CASAS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveRelative", 
+    "value": -5
+  },
+  {
+    "id": "ret_ini",
+    "text": "RETORNE AO INÍCIO!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "returnToStart"
+  },
+  {
+    "id": "perd_pts",
+    "text": "PERDEU TODOS OS PONTOS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "resetPoints"
+  },
+  {
+    "id": "perd_pts_ret_ini",
+    "text": "PERDEU TODOS OS PONTOS E RETORNE AO INÍCIO!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "resetPointsAndReturnToStart"
+  },
+  {
+    "id": "ir_fim",
+    "text": "PARABÉNS! VOCÊ FOI DIRETO PARA O FIM!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveToEnd"
+  },
+  {
+    "id": "bonus_10",
+    "text": "BÔNUS! GANHOU 10 PONTOS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "addPoints", 
+    "value": 10
+  },
+  {
+    "id": "bonus_20",
+    "text": "SUPER BÔNUS! GANHOU 20 PONTOS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "addPoints", 
+    "value": 20
+  },
+  {
+    "id": "perde_10",
+    "text": "AZAR! PERDEU 10 PONTOS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "losePoints", 
+    "value": 10
+  },
+  {
+    "id": "perde_20",
+    "text": "MUITO AZAR! PERDEU 20 PONTOS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "losePoints", 
+    "value": 20
+  },
+  {
+    "id": "troca_lugar",
+    "text": "TROQUE DE LUGAR COM OUTRO JOGADOR:",
+    "needsPlayerSelection": true,
+    "isFixed": false,
+    "effectType": "swapPosition"
+  },
+  {
+    "id": "escolhe_voltar",
+    "text": "ESCOLHA UM JOGADOR PARA VOLTAR CASAS:",
+    "needsPlayerSelection": true,
+    "isFixed": false,
+    "effectType": "moveTargetRelative", 
+    "min": -5, 
+    "max": -1, 
+    "feedback": "%TARGET_NAME% VOLTOU %VALUE% CASA(S)!"
+  },
+  {
+    "id": "todos_avancam",
+    "text": "TODOS OS JOGADORES AVANÇAM CASAS, MENOS VOCÊ!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveAllOthersRelative", 
+    "min": 1, 
+    "max": 5, 
+    "feedback": "TODOS OS OUTROS JOGADORES AVANÇARAM %VALUE% CASAS!"
+  },
+  {
+    "id": "todos_voltam_global",
+    "text": "TODOS OS JOGADORES VOLTAM CASAS, MENOS VOCÊ!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "moveAllOthersRelative",
+    "min": -5,
+    "max": -1,
+    "feedback": "TODOS OS OUTROS JOGADORES VOLTARAM %VALUE% CASA(S)!"
+  },
+  {
+    "id": "troca_pontos_escolha",
+    "text": "TROQUE SUA PONTUAÇÃO COM OUTRO JOGADOR:",
+    "needsPlayerSelection": true,
+    "isFixed": false,
+    "effectType": "swapScores", 
+    "feedback": "VOCÊ TROCOU DE PONTOS COM %TARGET_NAME%. VOCÊ ESTÁ COM %PLAYER_SCORE% PONTO(S) E %TARGET_NAME% ESTÁ AGORA COM %TARGET_SCORE% PONTO(S)!"
+  },
+  {
+    "id": "troca_pontos_aleatorio",
+    "text": "SURPRESA! VOCÊ VAI TROCAR ALEATÓRIAMENTE SUA PONTUAÇÃO COM OUTRO JOGADOR!",
+    "needsPlayerSelection": false,
+    "isFixed": true,
+    "effectType": "swapScoresRandom", 
+    "feedback": "VOCÊ TROCOU ALEATÓRIAMENTE DE PONTOS COM %TARGET_NAME%. VOCÊ ESTÁ COM %PLAYER_SCORE% PONTO(S) E %TARGET_NAME% ESTÁ AGORA COM %TARGET_SCORE% PONTO(S)!"
+  },
+  {
+    "id": "todos_retornam_inicio_menos_ativo",
+    "text": "REVIRAVOLTA! TODOS OS JOGADORES RETORNAM PARA O INÍCIO!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "allOthersReturnToStart"
+  },
+  {
+    "id": "todos_vao_fim_menos_ativo",
+    "text": "FINAL ANTECIPADO! TODOS OS JOGADORES FORAM MÁGICAMENTE TRANSPORTADOS PARA O FIM!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "allOthersMoveToEnd"
+  },
+  {
+    "id": "perde_rodada",
+    "text": "QUE PENA! VOCÊ PERDE UMA RODADA E FICARÁ SEM JOGAR!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "skipTurn"
+  },
+  {
+    "id": "todos_incluindo_ativo_vao_fim",
+    "text": "APOCALIPSE!!! TODOS FORAM LEVADOS PARA O FIM E O JOGO ACABOU!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "allPlayersIncludingActiveToEnd"
+  },
+  {
+    "id": "todos_incluindo_ativo_voltam_inicio",
+    "text": "REINÍCIO TOTAL!! DE VOLTA À ESTACA ZERO: TODOS OS JOGADORES RETORNARAM AO INÍCIO!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "allPlayersIncludingActiveToStart"
+  },
+  {
+    "id": "todos_incluindo_ativo_perdem_todos_pontos",
+    "text": "QUEBROU GERAL! CRISE FINANCEIRA: TODOS OS JOGADORES ESTÃO ZERADOS. NINGUÉM TEM MAIS PONTOS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "allPlayersIncludingActiveResetPoints"
+  },
+  {
+    "id": "todos_exceto_ativo_ganham_pontos_aleatorios",
+    "text": "DIA DE SORTE... PARA OS OUTROS! TODOS OS OUTROS JOGADORES GANHAM PONTOS!",
+    "needsPlayerSelection": false,
+    "isFixed": false,
+    "effectType": "allOthersGainRandomPoints",
+    "minPoints": 10,
+    "maxPoints": 30,
+    "feedback": "DISTRIBUIÇÃO DE RIQUEZA! TODOS OS OUTROS JOGADORES FORAM PRESENTEADOS COM PONTOS EXTRAS!"
+  }
+]

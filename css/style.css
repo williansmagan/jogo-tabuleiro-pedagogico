@@ -1,0 +1,543 @@
+/* css/style.css (Layout original do tabuleiro, com outras funcionalidades mantidas) */
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.tela {
+    display: none;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 1200px;
+}
+
+.tela.ativa {
+    display: block;
+}
+
+h1, h2, h3 {
+    color: #0056b3;
+}
+
+input[type="text"], input[type="number"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+    position: relative;
+    z-index: 1;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#jogadores-ul, #ranking-ul {
+    list-style: none;
+    padding: 0;
+}
+#jogadores-ul { /* Para a lista de jogadores na tela de cadastro */
+    margin: 0 auto 20px auto;
+    max-width: 450px;
+    text-align: left;
+}
+#jogadores-ul li, #ranking-ul li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+}
+#jogadores-ul li:last-child, #ranking-ul li:last-child {
+    border-bottom: none;
+}
+
+.player-color-indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 1px solid #555;
+    flex-shrink: 0;
+}
+
+/* Tela do Jogo */
+#tela-jogo header {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    margin-bottom: 15px;
+    border-radius: 6px 6px 0 0;
+}
+#tela-jogo header h1 {
+    color: white;
+    margin: 0;
+    font-size: 1.5em;
+}
+#jogador-atual-info {
+    font-size: 1em;
+}
+
+#area-principal-jogo {
+    display: flex;
+    gap: 20px;
+}
+
+/* --- ESTILOS DO TABULEIRO (VISUAL ORIGINAL DE GRADE) --- */
+#tabuleiro-container {
+    flex-grow: 1;
+    display: grid;
+    /* O número de colunas é definido via JS */
+    gap: 5px; /* Gap original entre as casas */
+    padding: 10px; /* Padding original */
+    border: 2px solid #ccc; /* Borda original */
+    background-color: #e9ecef; /* Fundo original */
+    min-height: 200px;
+    align-content: start;
+    overflow: auto;
+    border-radius: 5px; /* Arredondamento leve no container */
+}
+
+.casa-tabuleiro {
+    border: 1px solid #aaa; /* Borda padrão da casa */
+    min-height: 60px; /* Altura mínima original */
+    aspect-ratio: 1 / 1; /* Tenta manter casas quadradas */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Número no topo, peões embaixo */
+    align-items: center;
+    padding: 5px; /* Padding original da casa */
+    background-color: #fff; /* Fundo branco padrão para casas não especificadas */
+    position: relative;
+    font-size: 0.8em;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 4px; /* Leve arredondamento nas casas */
+}
+
+.casa-tabuleiro .casa-numero {
+    font-weight: bold;
+    align-self: flex-start; /* Número no canto superior esquerdo */
+    color: #333; /* Cor padrão do número */
+    background-color: transparent; /* Sem fundo extra para o número */
+    padding: 0; /* Sem padding extra */
+    position: static; /* Volta ao fluxo normal dentro do flex da casa */
+    font-size: 1em; /* Tamanho relativo ao font-size da .casa-tabuleiro */
+}
+
+/* Estilos para diferentes tipos de casa - MANTENDO CORES ORIGINAIS/CLARAS */
+.casa-tabuleiro.inicio {
+    background-color: #c8e6c9; /* Verde claro */
+    border-color: #a5d6a7;
+}
+.casa-tabuleiro.fim {
+    background-color: #ffcdd2; /* Vermelho claro */
+    border-color: #ef9a9a;
+}
+/* Texto INÍCIO/FIM centralizado e maior */
+.casa-tabuleiro.inicio .casa-numero,
+.casa-tabuleiro.fim .casa-numero {
+    align-self: center; /* Centraliza horizontalmente */
+    margin-top: auto; /* Empurra para o centro verticalmente com justify-content: space-between */
+    margin-bottom: auto;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.casa-tabuleiro.pergunta {
+    background-color: #fff9c4; /* Amarelo claro */
+    border-color: #fff176;
+}
+
+/* Classe base para todas as especiais, pode ser usada se não houver .fixa ou .aleatoria */
+.casa-tabuleiro.especial {
+    background-color: #bbdefb; /* Azul claro padrão para especial */
+    border-color: #90caf9;
+}
+
+.casa-tabuleiro.especial.aleatoria {
+    background-color: #CFD8DC; /* Cinza azulado - diferenciado */
+    border-color: #B0BEC5;
+    border-style: dashed;
+}
+.casa-tabuleiro.especial.aleatoria::after {
+    content: "?"; position: absolute; top: 4px; right: 5px; font-weight: bold; color: #546E7A; font-size: 1.2em; opacity: 0.9;
+}
+
+.casa-tabuleiro.especial.fixa {
+    background-color: #FFECB3; /* Amarelo/dourado claro - diferenciado */
+    border-color: #FFD54F;
+    box-shadow: 0 0 6px rgba(255, 202, 40, 0.4); /* Leve brilho */
+}
+.casa-tabuleiro.especial.fixa::after {
+    content: "!"; position: absolute; top: 4px; right: 5px; font-weight: bold; color: #FFA000; font-size: 1.2em; opacity: 0.9;
+}
+
+.casa-peoes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    width: 100%;
+    /* position, bottom, left, transform removidos, peões ficam no fluxo da casa */
+    /* max-height: 60%; */ /* Removido, justify-content: space-between deve cuidar */
+}
+
+.peao {
+    width: clamp(15px, 2vw, 20px); /* Tamanho original/responsivo */
+    height: clamp(15px, 2vw, 20px);
+    border-radius: 50%;
+    border: 1px solid #333; /* Borda mais fina */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.5em, 0.8vw, 0.7em);
+    font-weight: bold;
+    color: white;
+    text-shadow: 0.5px 0.5px 1px black;
+    box-sizing: border-box;
+    transition: transform 0.2s ease-in-out;
+    /* position: absolute e transform removidos, peão fica no fluxo */
+    /* z-index removido */
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* --- Sidebar e Modais (Restaurados para o mais próximo do original funcional) --- */
+#sidebar-jogo {
+    width: 250px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+#controle-dado, #ranking-container {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    text-align: center;
+}
+#img-dado {
+    display: block;
+    margin: 0 auto 10px auto;
+    width: 80px;
+}
+#controle-dado p {
+    font-size: 0.9em; margin-top: 10px;
+
+}
+#ranking-container h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+
+}
+#ranking-ul {
+    text-align: left;
+
+} /* Restaurado, pois #ranking-ul é filho de #ranking-container */
+#ranking-ul li {
+    padding: 8px;
+    font-size: 0.9em;
+
+}
+#ranking-ul li.jogador-ativo-ranking {
+    background-color: #E8F5E9;
+    font-weight: bold;
+    border-left: 3px solid #4CAF50;
+    padding-left: 5px;
+    margin-left: -8px;
+    border-radius: 3px;
+
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 15px;
+    box-sizing: border-box;
+
+}
+.modal.escondido {
+    display: none;
+
+}
+.modal-conteudo {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    /* Max-width original */ box-shadow: 0 5px 18px rgba(0,0,0,0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+    font-size: 1em;
+
+}
+.modal-conteudo h3 {
+    margin-top: 0;
+    font-size: 1.3em;
+
+}
+#pergunta-opcoes button {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+    background-color: #6c757d;
+/* Cor original */ font-size: 0.95em;
+
+}
+#pergunta-opcoes button:hover {
+    background-color: #5a6268;
+
+} /* Cor original */
+#feedback-resposta.correto {
+    color: green;
+    font-weight: bold;
+
+} /* Cor original */
+#feedback-resposta.incorreto {
+    color: red;
+    font-weight: bold;
+
+} /* Cor original */
+
+/* Pódio (Restaurado para o mais próximo do original funcional) */
+#tela-fim-jogo {
+    text-align: center;
+
+}
+#tela-fim-jogo h1 {
+    font-size: 2em;
+}
+#tela-fim-jogo h2 {
+    font-size: 1.6em;
+    margin-bottom: 15px;
+}
+
+/* NOVO: Wrapper para pódio e ranking */
+#fim-jogo-conteudo-principal {
+    display: flex;
+    justify-content: center; /* Centraliza se houver espaço sobrando */
+    align-items: flex-start; /* Alinha o topo do pódio com o topo da tabela */
+    gap: 30px; /* Espaço entre o pódio e a tabela de ranking */
+    margin-top: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Permite que quebre para baixo em telas menores */
+}
+
+#podium {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 300px;
+    gap: 10px;
+    /* margin-top: 30px;  Removido, pois #fim-jogo-conteudo-principal controla o espaçamento superior */
+    overflow: visible; /* Para não cortar sombras ou elementos animados que saem um pouco */
+    flex-shrink: 0; /* Impede que o pódio encolha se a tabela for muito larga */
+}
+.lugar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-in-out 0.5s, transform 0.5s ease-in-out 0.5s;
+
+}
+.lugar.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.barra-podium {
+    width: 80px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 0;
+    transition: height 1s ease-out;
+    position: relative;
+}
+.barra-podium span {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out 0.8s;
+
+}
+.barra-podium.animated span {
+    opacity: 1;
+
+}
+.nome-podium, .pontos-podium {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+
+}
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2000;
+
+}
+.confetti {
+    position: absolute;
+    opacity: 0;
+    animation: fall 3s ease-out forwards;
+
+}
+@keyframes fall {
+    0% { transform: translateY(-20vh) rotateZ(0deg);
+        opacity: 1;
+
+    } 100% { transform: translateY(120vh) rotateZ(720deg);
+        opacity: 0;
+
+    } }
+
+
+#ranking-completo-container {
+    /* Configuração inicial para animação */
+    opacity: 0;
+    transform: translateX(40px); /* Começa um pouco à direita */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    width: 45%; /* Ajuste conforme necessário */
+    max-width: 450px; /* Limite para não ficar excessivamente largo */
+    /* Remova margin-top se foi definido inline no HTML ou aqui anteriormente */
+}
+
+#ranking-completo-container.visible {
+    opacity: 1;
+    transform: translateX(0); /* Posição final */
+}
+
+#ranking-completo-container h3 {
+    margin-bottom: 10px;
+    font-size: clamp(1.1em, 2.5vw, 1.5em);
+}
+
+#tabela-ranking-completo {
+    width: 100%; /* Ocupa toda a largura do #ranking-completo-container */
+    /* max-width: 600px; Removido, pois o container pai já controla */
+    /* margin: 0 auto; Removido, pois o container pai já controla */
+    border-collapse: collapse;
+    font-size: clamp(0.8em, 1.8vw, 1em);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#tabela-ranking-completo th,
+#tabela-ranking-completo td {
+    border: 1px solid #ddd;
+    padding: 8px 10px;
+    text-align: left;
+}
+
+#tabela-ranking-completo th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+}
+
+#tabela-ranking-completo tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#tabela-ranking-completo td:first-child { /* Coluna Posição */
+    text-align: center;
+    font-weight: bold;
+    width: 50px;
+}
+
+/* Responsividade: Em telas menores, empilhar o pódio e a tabela */
+@media (max-width: 800px) { /* Ajuste o breakpoint conforme necessário */
+    #fim-jogo-conteudo-principal {
+        flex-direction: column;
+        align-items: center; /* Centraliza os itens quando empilhados */
+        gap: 20px;
+    }
+
+    #podium {
+        order: 1; /* Pódio primeiro */
+        height: 250px; /* Pode reduzir um pouco a altura */
+    }
+
+    #ranking-completo-container {
+        order: 2; /* Tabela depois */
+        width: 80%; /* Pode ocupar mais largura */
+        max-width: 500px;
+        margin-top: 20px; /* Espaçamento quando empilhado */
+        /* Animação de baixo para cima em mobile, por exemplo */
+        transform: translateY(30px);
+    }
+    #ranking-completo-container.visible {
+        transform: translateY(0);
+    }
+}
+
+
+#controle-jogo-extra {
+    margin-top: 15px; /* Espaçamento acima do botão */
+    text-align: center; /* Centraliza o botão se a div for block */
+}
+
+.btn-perigo { /* Classe para botões com ações "destrutivas" ou de finalização */
+    background-color: #dc3545; /* Vermelho */
+    border-color: #dc3545;
+}
+
+.btn-perigo:hover {
+    background-color: #c82333; /* Vermelho mais escuro no hover */
+    border-color: #bd2130;
+}

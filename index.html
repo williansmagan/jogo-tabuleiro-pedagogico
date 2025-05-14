@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOGO DE TABULEIRO DIGITAL</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="tela-cadastro" class="tela ativa">
+        <h1>CADASTRO DE JOGADORES</h1>
+        <div id="form-cadastro">
+            <input type="text" id="nome-jogador" placeholder="Nome do Jogador">
+            <button id="btn-add-jogador">ADICONAR JOGADOR</button>
+        </div>
+        <div id="lista-jogadores-cadastrados">
+            <h2>JOGADORES CADASTRADOS (NÚMERO MÁXIMO: 40):</h2>
+            <ul id="jogadores-ul"></ul>
+        </div>
+        <button id="btn-ir-configuracao" disabled>PRÓXIMO: CONFIGURAR TABULEIRO</button>
+    </div>
+
+    <div id="tela-configuracao" class="tela">
+        <h1>CONFIGURAÇÃO DO JOGO</h1>
+        <div>
+            <label for="num-casas">NÚMERO DE CASAS DO TABULEIRO (DEVE ESTAR ENTRE 10 E 100):</label>
+            <input type="number" id="num-casas" min="10" max="100" value="30">
+        </div>
+        <div>
+            <label for="num-casas-especiais">CASAS ESPECIAIS (EXEMPLO: 5 OU 30%):</label>
+            <input type="text" id="num-casas-especiais" value="30%"> <!-- Pode ser número ou % -->
+        </div>
+        <div>
+            <label for="num-casas-perguntas">CASAS DE PERGUNTAS (EXEMPLO: 10, OU DEIXE EM BRANCO PARA AUTOMÁTICO):</label>
+            <input type="text" id="num-casas-perguntas" placeholder="Automático"> <!-- Opcional -->
+        </div>
+        <button id="btn-iniciar-jogo">INICIAR JOGO!</button>
+    </div>
+
+    <div id="tela-jogo" class="tela">
+        <header>
+            <h1>JOGO EM ANDAMENTO</h1>
+            <div id="jogador-atual-info">
+                TURNO DE: <span id="nome-jogador-atual"></span> | PONTOS: <span id="pontos-jogador-atual">0</span>
+            </div>
+        </header>
+
+        <main id="area-principal-jogo">
+            <div id="tabuleiro-container">
+                <!-- Tabuleiro será gerado aqui pelo JS -->
+            </div>
+
+            <aside id="sidebar-jogo">
+                <div id="controle-dado">
+                    <img src="assets/images/dice_placeholder.png" alt="Dado" id="img-dado" width="80">
+                    <button id="btn-lancar-dado">LANÇAR DADO</button>
+                    <p>RESULTADO: <span id="resultado-dado">-</span></p>
+                    <p id="roll-dice-timer-display" style="color: red; font-weight: bold;"></p> <!-- NOVO DISPLAY -->
+                </div>
+
+                <div id="ranking-container">
+                    <h2>RANKING</h2>
+                    <ul id="ranking-ul"></ul>
+                </div>
+
+                <!-- NOVO BOTÃO DE ENCERRAR JOGO -->
+                <div id="controle-jogo-extra">
+                    <button id="btn-encerrar-jogo-manual" class="btn-perigo">ENCERRAR JOGO</button>
+                </div>
+
+            </aside>
+        </main>
+
+        <div id="modal-pergunta" class="modal escondido">
+            <div class="modal-conteudo">
+                <h3 id="pergunta-texto"></h3>
+                <div id="pergunta-opcoes">
+                    <!-- Opções serão geradas aqui -->
+                </div>
+                <p>TEMPO: <span id="pergunta-tempo"></span>s</p>
+                <p id="feedback-resposta"></p>
+            </div>
+        </div>
+
+        <div id="modal-acao-especial" class="modal escondido">
+            <div class="modal-conteudo">
+                <h3 id="acao-especial-titulo">AÇÃO ESPECIAL</h3>
+                <p id="acao-especial-descricao"></p>
+                <div id="acao-especial-opcoes-jogador">
+                    <!-- Para escolher outro jogador -->
+                </div>
+                <button id="btn-confirmar-acao-especial">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="tela-fim-jogo" class="tela">
+        <h1>FIM DE JOGO!</h1>
+        <h2>PÓDIO DOS CAMPEÕES:</h2>
+
+        <div id="fim-jogo-conteudo-principal"> <!-- NOVO WRAPPER -->
+            <div id="podium">
+                <div class="lugar" id="lugar-2">
+                    <p class="nome-podium">-</p>
+                    <div class="barra-podium" id="barra-2"><span></span></div>
+                    <p class="pontos-podium">-</p>
+                </div>
+                <div class="lugar" id="lugar-1">
+                    <p class="nome-podium">-</p>
+                    <div class="barra-podium" id="barra-1"><span></span></div>
+                    <p class="pontos-podium">-</p>
+                </div>
+                <div class="lugar" id="lugar-3">
+                    <p class="nome-podium">-</p>
+                    <div class="barra-podium" id="barra-3"><span></span></div>
+                    <p class="pontos-podium">-</p>
+                </div>
+            </div>
+
+            <div id="ranking-completo-container"> <!-- Remova o style="margin-top: 30px;" se tiver -->
+                <h3>CLASSIFICAÇÃO GERAL</h3>
+                <table id="tabela-ranking-completo">
+                    <thead>
+                        <tr>
+                            <th>POSIÇÃO</th>
+                            <th>JOGADOR</th>
+                            <th>PONTUAÇÃO</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-ranking-completo">
+                        <!-- Linhas serão adicionadas pelo JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <button id="btn-jogar-novamente">NOVO JOGO</button>
+    </div>
+
+    <div id="modal-sorteio-acao" class="modal escondido"> <!-- NOVO MODAL -->
+        <div class="modal-conteudo">
+            <h3>CASA DE AÇÃO:</h3>
+            <p>VOCÊ CAIU EM UMA CASA ESPECIAL! CLIQUE NO BOTÃO ABAIXO PARA SORTEAR UMA AÇÃO:</p>
+            <button id="btn-sortear-acao-confirmar">SORTEAR AÇÃO!</button>
+        </div>
+    </div>
+
+    <script src="js/player.js"></script>
+    <script src="js/questions.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/gameLogic.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

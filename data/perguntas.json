@@ -1,0 +1,902 @@
+[
+  {
+    "id": "q1",
+    "tipo": "multipla_escolha",
+    "texto": "Qual é a capital da França?",
+    "opcoes": ["A) Londres", "B) Berlim", "C) Paris", "D) Madrid"],
+    "resposta_correta": "C) Paris",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q2",
+    "tipo": "verdadeiro_falso",
+    "texto": "O Sol gira em torno da Terra.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q3",
+    "tipo": "multipla_escolha",
+    "texto": "Quantos lados tem um heptágono?",
+    "opcoes": ["A) 5", "B) 6", "C) 7", "D) 8"],
+    "resposta_correta": "C) 7",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q4",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o maior planeta do nosso sistema solar?",
+    "opcoes": ["A) Terra", "B) Marte", "C) Júpiter", "D) Saturno"],
+    "resposta_correta": "C) Júpiter",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q5",
+    "tipo": "verdadeiro_falso",
+    "texto": "A água ferve a 100 graus Celsius ao nível do mar.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q6",
+    "tipo": "multipla_escolha",
+    "texto": "Quem escreveu 'Dom Quixote'?",
+    "opcoes": ["A) William Shakespeare", "B) Miguel de Cervantes", "C) Machado de Assis", "D) Charles Dickens"],
+    "resposta_correta": "B) Miguel de Cervantes",
+    "tempo": 30,
+    "pontos": 20
+  },
+  {
+    "id": "q7",
+    "tipo": "multipla_escolha",
+    "texto": "Qual elemento químico tem o símbolo 'O'?",
+    "opcoes": ["A) Ouro", "B) Oxigênio", "C) Ósmio", "D) Hidrogênio"],
+    "resposta_correta": "B) Oxigênio",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q8",
+    "tipo": "verdadeiro_falso",
+    "texto": "O Brasil é o maior país da América do Sul em área territorial.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q9",
+    "tipo": "multipla_escolha",
+    "texto": "Em que ano o homem pisou na Lua pela primeira vez?",
+    "opcoes": ["A) 1965", "B) 1969", "C) 1971", "D) 1973"],
+    "resposta_correta": "B) 1969",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q10",
+    "tipo": "multipla_escolha",
+    "texto": "Qual é a moeda oficial do Japão?",
+    "opcoes": ["A) Yuan", "B) Won", "C) Yen", "D) Dólar"],
+    "resposta_correta": "C) Yen",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q11",
+    "tipo": "verdadeiro_falso",
+    "texto": "A Muralha da China é visível do espaço a olho nu.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 20,
+    "pontos": 15
+  },
+  {
+    "id": "q12",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o animal terrestre mais rápido?",
+    "opcoes": ["A) Leão", "B) Tigre", "C) Guepardo", "D) Leopardo"],
+    "resposta_correta": "C) Guepardo",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q13",
+    "tipo": "multipla_escolha",
+    "texto": "Qual pintor é famoso por cortar parte da própria orelha?",
+    "opcoes": ["A) Claude Monet", "B) Pablo Picasso", "C) Vincent van Gogh", "D) Leonardo da Vinci"],
+    "resposta_correta": "C) Vincent van Gogh",
+    "tempo": 30,
+    "pontos": 20
+  },
+  {
+    "id": "q14",
+    "tipo": "verdadeiro_falso",
+    "texto": "O Monte Everest é a montanha mais alta do mundo.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q15",
+    "tipo": "multipla_escolha",
+    "texto": "Qual destes não é um sabor primário do paladar humano?",
+    "opcoes": ["A) Doce", "B) Salgado", "C) Picante", "D) Azedo"],
+    "resposta_correta": "C) Picante",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q16",
+    "tipo": "multipla_escolha",
+    "texto": "Quantos estados tem o Brasil?",
+    "opcoes": ["A) 25", "B) 26", "C) 27", "D) 28"],
+    "resposta_correta": "B) 26",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q17",
+    "tipo": "verdadeiro_falso",
+    "texto": "A velocidade da luz é maior que a velocidade do som.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q18",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o nome do oceano que banha a costa leste do Brasil?",
+    "opcoes": ["A) Pacífico", "B) Índico", "C) Atlântico", "D) Ártico"],
+    "resposta_correta": "C) Atlântico",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q19",
+    "tipo": "multipla_escolha",
+    "texto": "Quem foi o primeiro presidente do Brasil?",
+    "opcoes": ["A) Getúlio Vargas", "B) Juscelino Kubitschek", "C) Marechal Deodoro da Fonseca", "D) Prudente de Morais"],
+    "resposta_correta": "C) Marechal Deodoro da Fonseca",
+    "tempo": 30,
+    "pontos": 20
+  },
+  {
+    "id": "q20",
+    "tipo": "verdadeiro_falso",
+    "texto": "Cleópatra foi a última rainha do Egito Antigo.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 20,
+    "pontos": 15
+  },
+  {
+    "id": "q21",
+    "tipo": "multipla_escolha",
+    "texto": "Se um trem elétrico viaja para o sul a 100 km/h e o vento sopra para oeste a 10 km/h, para que lado a fumaça do trem vai?",
+    "opcoes": ["A) Leste", "B) Oeste", "C) Sudeste", "D) Nenhuma das anteriores"],
+    "resposta_correta": "D) Nenhuma das anteriores",
+    "tempo": 40,
+    "pontos": 30
+  },
+  {
+    "id": "q22",
+    "tipo": "multipla_escolha",
+    "texto": "Qual é a fórmula química da água?",
+    "opcoes": ["A) CO2", "B) H2O", "C) NaCl", "D) O2"],
+    "resposta_correta": "B) H2O",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q23",
+    "tipo": "verdadeiro_falso",
+    "texto": "Os dinossauros e os humanos viveram na mesma época.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q24",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o país mais populoso do mundo atualmente (Maio de 2025)?",
+    "opcoes": ["A) China", "B) Estados Unidos", "C) Índia", "D) Indonésia"],
+    "resposta_correta": "C) Índia",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q25",
+    "tipo": "multipla_escolha",
+    "texto": "Qual destes instrumentos musicais não pertence à família das cordas?",
+    "opcoes": ["A) Violino", "B) Violão", "C) Piano", "D) Harpa"],
+    "resposta_correta": "C) Piano",
+    "tempo": 30,
+    "pontos": 20
+  },
+  {
+    "id": "q26",
+    "tipo": "verdadeiro_falso",
+    "texto": "A Torre Eiffel está localizada em Londres.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 15,
+    "pontos": 5
+  },
+  {
+    "id": "q27",
+    "tipo": "multipla_escolha",
+    "texto": "Qual a unidade básica da vida?",
+    "opcoes": ["A) Átomo", "B) Molécula", "C) Célula", "D) Tecido"],
+    "resposta_correta": "C) Célula",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q28",
+    "tipo": "multipla_escolha",
+    "texto": "Em qual esporte se utiliza um 'birdie' ou peteca?",
+    "opcoes": ["A) Tênis", "B) Vôlei", "C) Badminton", "D) Squash"],
+    "resposta_correta": "C) Badminton",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q29",
+    "tipo": "verdadeiro_falso",
+    "texto": "O deserto do Saara é o maior deserto quente do mundo.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 20,
+    "pontos": 15
+  },
+  {
+    "id": "q30",
+    "tipo": "multipla_escolha",
+    "texto": "Quem pintou a Mona Lisa?",
+    "opcoes": ["A) Michelangelo", "B) Rafael Sanzio", "C) Leonardo da Vinci", "D) Donatello"],
+    "resposta_correta": "C) Leonardo da Vinci",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q31",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o processo pelo qual as plantas produzem seu próprio alimento?",
+    "opcoes": ["A) Respiração", "B) Transpiração", "C) Fotossíntese", "D) Decomposição"],
+    "resposta_correta": "C) Fotossíntese",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q32",
+    "tipo": "verdadeiro_falso",
+    "texto": "O rio Amazonas é o rio mais longo do mundo.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 20,
+    "pontos": 15
+  },
+  {
+    "id": "q33",
+    "tipo": "multipla_escolha",
+    "texto": "Quantos continentes existem tradicionalmente?",
+    "opcoes": ["A) 5", "B) 6", "C) 7", "D) 8"],
+    "resposta_correta": "B) 6",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q34",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o metal mais abundante na crosta terrestre?",
+    "opcoes": ["A) Ferro", "B) Alumínio", "C) Cobre", "D) Ouro"],
+    "resposta_correta": "B) Alumínio",
+    "tempo": 30,
+    "pontos": 25
+  },
+  {
+    "id": "q35",
+    "tipo": "verdadeiro_falso",
+    "texto": "A penicilina foi descoberta por Alexander Fleming.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 20,
+    "pontos": 15
+  },
+  {
+    "id": "q36",
+    "tipo": "multipla_escolha",
+    "texto": "Qual destes países não faz fronteira com o Brasil?",
+    "opcoes": ["A) Argentina", "B) Chile", "C) Colômbia", "D) Peru"],
+    "resposta_correta": "B) Chile",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q37",
+    "tipo": "multipla_escolha",
+    "texto": "Em que cidade italiana está localizada a Torre de Pisa?",
+    "opcoes": ["A) Roma", "B) Florença", "C) Pisa", "D) Veneza"],
+    "resposta_correta": "C) Pisa",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q38",
+    "tipo": "verdadeiro_falso",
+    "texto": "O morcego é um mamífero.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q39",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o nome da teoria da relatividade desenvolvida por Albert Einstein?",
+    "opcoes": ["A) Teoria Quântica", "B) Teoria da Relatividade Geral", "C) Teoria das Cordas", "D) Teoria do Big Bang"],
+    "resposta_correta": "B) Teoria da Relatividade Geral",
+    "tempo": 30,
+    "pontos": 20
+  },
+  {
+    "id": "q40",
+    "tipo": "multipla_escolha",
+    "texto": "O que um cartógrafo faz?",
+    "opcoes": ["A) Estuda caligrafia", "B) Desenha mapas", "C) Dirige carros de corrida", "D) Cria personagens de desenho animado"],
+    "resposta_correta": "B) Desenha mapas",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q41",
+    "tipo": "verdadeiro_falso",
+    "texto": "A Grande Barreira de Coral está localizada na Austrália.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q42",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o coletivo de lobos?",
+    "opcoes": ["A) Rebanho", "B) Cardume", "C) Alcateia", "D) Matilha"],
+    "resposta_correta": "C) Alcateia",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q43",
+    "tipo": "multipla_escolha",
+    "texto": "Qual evento marcou o início da Primeira Guerra Mundial?",
+    "opcoes": ["A) A invasão da Polônia", "B) O ataque a Pearl Harbor", "C) O assassinato do Arquiduque Franz Ferdinand", "D) A Revolução Russa"],
+    "resposta_correta": "C) O assassinato do Arquiduque Franz Ferdinand",
+    "tempo": 35,
+    "pontos": 25
+  },
+  {
+    "id": "q44",
+    "tipo": "verdadeiro_falso",
+    "texto": "O som se propaga no vácuo.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q45",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o esporte nacional do Canadá (de verão)?",
+    "opcoes": ["A) Hóquei no Gelo", "B) Basquete", "C) Lacrosse", "D) Futebol Americano"],
+    "resposta_correta": "C) Lacrosse",
+    "tempo": 30,
+    "pontos": 20
+  },
+  {
+    "id": "q46",
+    "tipo": "multipla_escolha",
+    "texto": "Qual é o resultado de 15 + 3 x 2 - 1?",
+    "opcoes": ["A) 35", "B) 20", "C) 22", "D) 18"],
+    "resposta_correta": "B) 20",
+    "tempo": 40,
+    "pontos": 30
+  },
+  {
+    "id": "q47",
+    "tipo": "verdadeiro_falso",
+    "texto": "Os Jogos Olímpicos modernos foram inspirados em festivais da Grécia Antiga.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 20,
+    "pontos": 15
+  },
+  {
+    "id": "q48",
+    "tipo": "multipla_escolha",
+    "texto": "Qual a capital da Austrália?",
+    "opcoes": ["A) Sydney", "B) Melbourne", "C) Camberra", "D) Brisbane"],
+    "resposta_correta": "C) Camberra",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q49",
+    "tipo": "multipla_escolha",
+    "texto": "Quantos corações tem um polvo?",
+    "opcoes": ["A) 1", "B) 2", "C) 3", "D) 4"],
+    "resposta_correta": "C) 3",
+    "tempo": 30,
+    "pontos": 20
+  },
+  {
+    "id": "q50",
+    "tipo": "verdadeiro_falso",
+    "texto": "A Terra é o terceiro planeta a partir do Sol.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q51",
+    "tipo": "multipla_escolha",
+    "texto": "Se você tem 3 maçãs e dá 1 para um amigo, quantas maçãs você tem?",
+    "opcoes": ["A) 1", "B) 2", "C) 3", "D) 4"],
+    "resposta_correta": "B) 2",
+    "tempo": 15,
+    "pontos": 5
+  },
+  {
+    "id": "q52",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o principal gás responsável pelo efeito estufa?",
+    "opcoes": ["A) Oxigênio", "B) Nitrogênio", "C) Dióxido de Carbono", "D) Hidrogênio"],
+    "resposta_correta": "C) Dióxido de Carbono",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q53",
+    "tipo": "verdadeiro_falso",
+    "texto": "O xadrez é considerado um esporte.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q54",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o nome do criador da Microsoft?",
+    "opcoes": ["A) Steve Jobs", "B) Bill Gates", "C) Mark Zuckerberg", "D) Jeff Bezos"],
+    "resposta_correta": "B) Bill Gates",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q55",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o antônimo de 'rápido'?",
+    "opcoes": ["A) Veloz", "B) Lento", "C) Ágil", "D) Breve"],
+    "resposta_correta": "B) Lento",
+    "tempo": 15,
+    "pontos": 5
+  },
+  {
+    "id": "q56",
+    "tipo": "verdadeiro_falso",
+    "texto": "A Lua tem atmosfera.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q57",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o maior osso do corpo humano?",
+    "opcoes": ["A) Tíbia", "B) Fêmur", "C) Úmero", "D) Costela"],
+    "resposta_correta": "B) Fêmur",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q58",
+    "tipo": "multipla_escolha",
+    "texto": "Qual é a cor resultante da mistura de azul e amarelo?",
+    "opcoes": ["A) Vermelho", "B) Laranja", "C) Verde", "D) Roxo"],
+    "resposta_correta": "C) Verde",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q59",
+    "tipo": "verdadeiro_falso",
+    "texto": "O Vaticano é o menor país do mundo.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 20,
+    "pontos": 15
+  },
+  {
+    "id": "q60",
+    "tipo": "multipla_escolha",
+    "texto": "Quem escreveu a peça 'Romeu e Julieta'?",
+    "opcoes": ["A) Charles Dickens", "B) Jane Austen", "C) William Shakespeare", "D) Homero"],
+    "resposta_correta": "C) William Shakespeare",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q61",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o nome da galáxia em que vivemos?",
+    "opcoes": ["A) Andrômeda", "B) Via Láctea", "C) Triângulo", "D) Sombrero"],
+    "resposta_correta": "B) Via Láctea",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q62",
+    "tipo": "verdadeiro_falso",
+    "texto": "Golfinhos são peixes.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q63",
+    "tipo": "multipla_escolha",
+    "texto": "Quantos minutos tem uma hora e meia?",
+    "opcoes": ["A) 60", "B) 90", "C) 120", "D) 150"],
+    "resposta_correta": "B) 90",
+    "tempo": 15,
+    "pontos": 5
+  },
+  {
+    "id": "q64",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o metal líquido à temperatura ambiente?",
+    "opcoes": ["A) Chumbo", "B) Mercúrio", "C) Alumínio", "D) Prata"],
+    "resposta_correta": "B) Mercúrio",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q65",
+    "tipo": "verdadeiro_falso",
+    "texto": "A cidade de Machu Picchu foi construída pelos Maias.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 25,
+    "pontos": 20
+  },
+  {
+    "id": "q66",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o país de origem do Tango?",
+    "opcoes": ["A) Brasil", "B) Espanha", "C) Argentina", "D) México"],
+    "resposta_correta": "C) Argentina",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q67",
+    "tipo": "multipla_escolha",
+    "texto": "Qual personagem de desenho animado vive em uma abacaxi no fundo do mar?",
+    "opcoes": ["A) Mickey Mouse", "B) Pernalonga", "C) Bob Esponja", "D) Pica-Pau"],
+    "resposta_correta": "C) Bob Esponja",
+    "tempo": 15,
+    "pontos": 5
+  },
+  {
+    "id": "q68",
+    "tipo": "verdadeiro_falso",
+    "texto": "A Floresta Amazônica é exclusivamente brasileira.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q69",
+    "tipo": "multipla_escolha",
+    "texto": "Qual a camada mais externa da Terra?",
+    "opcoes": ["A) Manto", "B) Núcleo", "C) Crosta", "D) Atmosfera"],
+    "resposta_correta": "C) Crosta",
+    "tempo": 20,
+    "pontos": 15
+  },
+  {
+    "id": "q70",
+    "tipo": "multipla_escolha",
+    "texto": "Em um ano bissexto, quantos dias tem o mês de fevereiro?",
+    "opcoes": ["A) 28", "B) 29", "C) 30", "D) 31"],
+    "resposta_correta": "B) 29",
+    "tempo": 15,
+    "pontos": 5
+  },
+  {
+    "id": "q71",
+    "tipo": "verdadeiro_falso",
+    "texto": "A Estátua da Liberdade foi um presente da França para os Estados Unidos.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 20,
+    "pontos": 15
+  },
+  {
+    "id": "q72",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o número atômico do hidrogênio?",
+    "opcoes": ["A) 1", "B) 2", "C) 3", "D) 4"],
+    "resposta_correta": "A) 1",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q73",
+    "tipo": "multipla_escolha",
+    "texto": "O pai de Maria tem cinco filhas: Lalá, Lelé, Lili, Loló. Qual é o nome da quinta filha?",
+    "opcoes": ["A) Lulu", "B) Lulú", "C) Maria", "D) Não se pode saber"],
+    "resposta_correta": "C) Maria",
+    "tempo": 30,
+    "pontos": 25
+  },
+  {
+    "id": "q74",
+    "tipo": "verdadeiro_falso",
+    "texto": "O sushi é um prato tradicionalmente chinês.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q75",
+    "tipo": "multipla_escolha",
+    "texto": "Qual a capital de Portugal?",
+    "opcoes": ["A) Madrid", "B) Barcelona", "C) Lisboa", "D) Porto"],
+    "resposta_correta": "C) Lisboa",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q76",
+    "tipo": "multipla_escolha",
+    "texto": "Qual destes animais é um marsupial?",
+    "opcoes": ["A) Urso", "B) Canguru", "C) Esquilo", "D) Castor"],
+    "resposta_correta": "B) Canguru",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q77",
+    "tipo": "verdadeiro_falso",
+    "texto": "A invenção da imprensa é atribuída a Johannes Gutenberg.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q78",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o nome do cientista que formulou a lei da gravitação universal?",
+    "opcoes": ["A) Galileu Galilei", "B) Isaac Newton", "C) Nicolau Copérnico", "D) Johannes Kepler"],
+    "resposta_correta": "B) Isaac Newton",
+    "tempo": 25,
+    "pontos": 20
+  },
+  {
+    "id": "q79",
+    "tipo": "multipla_escolha",
+    "texto": "O que entra na água e não se molha?",
+    "opcoes": ["A) Uma pedra", "B) A sombra", "C) Um peixe", "D) Açúcar"],
+    "resposta_correta": "B) A sombra",
+    "tempo": 35,
+    "pontos": 30
+  },
+  {
+    "id": "q80",
+    "tipo": "verdadeiro_falso",
+    "texto": "O Coliseu de Roma era usado para corridas de bigas.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q81",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o planeta conhecido como 'Estrela da Manhã' ou 'Estrela da Tarde'?",
+    "opcoes": ["A) Mercúrio", "B) Vênus", "C) Marte", "D) Júpiter"],
+    "resposta_correta": "B) Vênus",
+    "tempo": 30,
+    "pontos": 20
+  },
+  {
+    "id": "q82",
+    "tipo": "multipla_escolha",
+    "texto": "Qual é o maior mamífero do mundo?",
+    "opcoes": ["A) Elefante Africano", "B) Baleia Azul", "C) Rinoceronte Branco", "D) Girafa"],
+    "resposta_correta": "B) Baleia Azul",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q83",
+    "tipo": "verdadeiro_falso",
+    "texto": "A fotossíntese libera oxigênio na atmosfera.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q84",
+    "tipo": "multipla_escolha",
+    "texto": "Qual destes é um tipo de rocha?",
+    "opcoes": ["A) Granito", "B) Diamante", "C) Quartzo", "D) Todas as anteriores"],
+    "resposta_correta": "D) Todas as anteriores",
+    "tempo": 25,
+    "pontos": 20
+  },
+  {
+    "id": "q85",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o idioma oficial da Argentina?",
+    "opcoes": ["A) Português", "B) Inglês", "C) Espanhol", "D) Francês"],
+    "resposta_correta": "C) Espanhol",
+    "tempo": 15,
+    "pontos": 5
+  },
+  {
+    "id": "q86",
+    "tipo": "verdadeiro_falso",
+    "texto": "O ser humano tem 206 ossos em média na fase adulta.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 20,
+    "pontos": 15
+  },
+  {
+    "id": "q87",
+    "tipo": "multipla_escolha",
+    "texto": "Qual destas obras não foi escrita por Machado de Assis?",
+    "opcoes": ["A) Dom Casmurro", "B) Memórias Póstumas de Brás Cubas", "C) O Cortiço", "D) Quincas Borba"],
+    "resposta_correta": "C) O Cortiço",
+    "tempo": 35,
+    "pontos": 25
+  },
+  {
+    "id": "q88",
+    "tipo": "multipla_escolha",
+    "texto": "Qual a capital do Canadá?",
+    "opcoes": ["A) Toronto", "B) Montreal", "C) Vancouver", "D) Ottawa"],
+    "resposta_correta": "D) Ottawa",
+    "tempo": 25,
+    "pontos": 15
+  },
+  {
+    "id": "q89",
+    "tipo": "verdadeiro_falso",
+    "texto": "O Mar Morto tem esse nome devido à ausência de vida aquática por sua alta salinidade.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q90",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o nome do processo de transformação da larva em borboleta?",
+    "opcoes": ["A) Mutação", "B) Metamorfose", "C) Evolução", "D) Crescimento"],
+    "resposta_correta": "B) Metamorfose",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q91",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o resultado de 5! (fatorial de 5)?",
+    "opcoes": ["A) 15", "B) 25", "C) 60", "D) 120"],
+    "resposta_correta": "D) 120",
+    "tempo": 45,
+    "pontos": 35
+  },
+  {
+    "id": "q92",
+    "tipo": "verdadeiro_falso",
+    "texto": "A península Ibérica é formada por Portugal e Espanha.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q93",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o nome da primeira mulher a ir ao espaço?",
+    "opcoes": ["A) Sally Ride", "B) Valentina Tereshkova", "C) Mae Jemison", "D) Svetlana Savitskaya"],
+    "resposta_correta": "B) Valentina Tereshkova",
+    "tempo": 30,
+    "pontos": 20
+  },
+  {
+    "id": "q94",
+    "tipo": "multipla_escolha",
+    "texto": "O que tem cidades, mas não casas; florestas, mas não árvores; e água, mas não peixes?",
+    "opcoes": ["A) Um sonho", "B) Um mapa", "C) Um livro", "D) Uma pintura"],
+    "resposta_correta": "B) Um mapa",
+    "tempo": 40,
+    "pontos": 30
+  },
+  {
+    "id": "q95",
+    "tipo": "verdadeiro_falso",
+    "texto": "O Sol é uma estrela.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "VERDADEIRO",
+    "tempo": 10,
+    "pontos": 5
+  },
+  {
+    "id": "q96",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o código internacional telefônico do Brasil?",
+    "opcoes": ["A) +1", "B) +44", "C) +55", "D) +49"],
+    "resposta_correta": "C) +55",
+    "tempo": 20,
+    "pontos": 10
+  },
+  {
+    "id": "q97",
+    "tipo": "multipla_escolha",
+    "texto": "Em que continente fica o Egito?",
+    "opcoes": ["A) Ásia", "B) Europa", "C) África", "D) Oceania"],
+    "resposta_correta": "C) África",
+    "tempo": 15,
+    "pontos": 10
+  },
+  {
+    "id": "q98",
+    "tipo": "verdadeiro_falso",
+    "texto": "Um quilograma de algodão é mais pesado que um quilograma de chumbo.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 20,
+    "pontos": 15
+  },
+  {
+    "id": "q99",
+    "tipo": "multipla_escolha",
+    "texto": "Qual é a soma dos ângulos internos de um triângulo?",
+    "opcoes": ["A) 90 graus", "B) 180 graus", "C) 270 graus", "D) 360 graus"],
+    "resposta_correta": "B) 180 graus",
+    "tempo": 25,
+    "pontos": 20
+  },
+  {
+    "id": "q100",
+    "tipo": "multipla_escolha",
+    "texto": "Qual o nome do cavalo de Dom Quixote?",
+    "opcoes": ["A) Bucéfalo", "B) Pegasus", "C) Rocinante", "D) Babieca"],
+    "resposta_correta": "C) Rocinante",
+    "tempo": 30,
+    "pontos": 20
+  }
+]
