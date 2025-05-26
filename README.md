@@ -1,6 +1,6 @@
-# Jogo de Tabuleiro Educativo Digital
+# Desafio do Conhecimento - Jogo de Tabuleiro Digital Educativo
 
-Bem-vindo ao Jogo de Tabuleiro Educativo Digital! Este é um projeto open-source criado para auxiliar professores e alunos do 6º ano (ou outras séries, com adaptação das perguntas) a revisar conteúdos de forma lúdica e interativa. O jogo é um circuito digital que roda diretamente no navegador.
+Bem-vindo ao "Desafio do Conhecimento"! Um jogo de tabuleiro digital interativo e personalizável, projetado para tornar o aprendizado divertido e engajador para alunos. Avance pelo tabuleiro, responda a perguntas desafiadoras, enfrente casas especiais com surpresas e dispute o pódio dos maiores exploradores do saber!
 
 ## Visão Geral
 
@@ -8,30 +8,71 @@ Este jogo de tabuleiro permite que múltiplos jogadores (até 40) avancem em um 
 
 ![Gameplay Screenshot](https://jogo.wmstecnologia.com.br/assets/images/screenshot.png)
 
-## Funcionalidades
+## Funcionalidades Principais
 
-*   **Cadastro de Jogadores:** Permite cadastrar até 40 jogadores, cada um identificado por uma cor.
-*   **Configuração do Tabuleiro:** O número de casas no tabuleiro pode ser configurado antes de iniciar o jogo.
-*   **Perguntas Personalizáveis:** As perguntas (múltipla escolha e V/F) são carregadas de um arquivo JSON externo (`data/perguntas.json`), permitindo fácil personalização do conteúdo para diferentes matérias ou tópicos.
-    *   Cada pergunta pode ter um tempo limite para resposta e uma pontuação específica.
-*   **Casas Especiais:** Aproximadamente 30% (ou outro valor definido no momento da configuração do jogo) do tabuleiro é composto por casas com ações especiais, como:
-    *   Avançar ou voltar casas.
-    *   Retornar ao início.
-    *   Perder pontos.
-    *   Trocar de lugar ou pontos com outros jogadores (escolha do jogador ou aleatório).
-    *   Efeitos que afetam todos os jogadores.
-*   **Layout do Tabuleiro em Zigue-zague:** As casas são dispostas em um formato de serpentina para uma progressão mais natural.
-*   **Ranking Dinâmico:** O ranking dos jogadores é atualizado em tempo real com base na pontuação.
-*   **Pódio Animado:** Ao final do jogo (quando todos os jogadores chegam ao fim ou o jogo é encerrado manualmente), um pódio animado exibe os três melhores colocados.
-*   **Encerramento Manual:** Um botão permite que o jogo seja encerrado a qualquer momento, exibindo o pódio com as pontuações atuais.
-*   **Efeitos Sonoros:** Efeitos sonoros para diversas ações do jogo (rolar dado, mover peão, acerto/erro, etc.).
-*   **Ajuste de Pontos por Erro:** Perda aleatória de 1 a 3 pontos ao errar uma pergunta.
+*   **Tabuleiro Dinâmico:** O número de casas é configurável, criando uma nova experiência a cada partida.
+*   **Cadastro de Jogadores:** Até 40 jogadores podem participar, cada um com um avatar e cor distintos.
+*   **Perguntas Personalizáveis:**
+    *   As perguntas são carregadas de um arquivo `perguntas.json`, permitindo fácil adição e edição de conteúdo.
+    *   Suporte a perguntas de múltipla escolha e verdadeiro/falso.
+    *   Cada pergunta pode ter pontuação e tempo limite específicos.
+    *   **Filtros Avançados:** As perguntas podem ser filtradas por:
+        *   **Bimestre:** Selecione um ou mais bimestres.
+        *   **Ano/Turma:** Selecione um ou mais anos/turmas.
+        *   **Componente Curricular (Matéria):** Ex: Geografia, Arte, Ciências.
+        *   **Nível de Dificuldade.**
+*   **Casas Especiais:**
+    *   Casas que acionam ações fixas ou aleatórias (avançar, voltar, perder/ganhar pontos, trocar de lugar, etc.).
+    *   Carregadas de um arquivo `acoes_especiais.json`.
+*   **Sistema de Pontuação:** Ganhe pontos por respostas corretas. A pontuação negativa pode ser habilitada ou desabilitada.
+*   **Ranking em Tempo Real:** Acompanhe a classificação dos jogadores durante a partida.
+*   **Timer para Jogadas:** Os jogadores têm um tempo limite para lançar o dado, adicionando dinamismo.
+*   **Timer para Perguntas:** Cada pergunta tem seu próprio tempo para ser respondida.
+*   **Pódio dos Campeões:** Ao final do jogo, os 3 melhores jogadores são celebrados em um pódio animado, seguido por uma tabela de classificação geral.
+*   **Design Moderno e Atraente:** Interface com paleta de cores vibrante e fontes amigáveis, pensada para o público estudantil.
+*   **Opções de Acessibilidade Visual:** Possibilidade de exibir todos os textos em caixa alta.
+*   **Efeitos Sonoros:** Para uma experiência mais imersiva (requer arquivos de som na pasta `assets/sounds/`).
+*   **Animações:** Movimento de peões, rolagem de dados e pódio animados.
+
+
+## Estrutura de Pastas do Projeto
+
+/
+├── index.html                 # Arquivo principal da interface
+├── data/
+│   ├── perguntas.json         # Banco de dados de perguntas
+│   └── acoes_especiais.json   # Banco de dados de ações especiais
+└── assets/
+    ├── css/
+    │   └── style.css          # Estilos visuais do jogo
+    ├── js/
+    │   ├── player.js          # Classe Player
+    │   ├── questions.js       # Lógica para carregar perguntas
+    │   ├── audio.js           # Controle de áudio
+    │   ├── animations.js      # Lógica de animações
+    │   ├── ui.js              # Manipulação da interface do usuário
+    │   ├── gameLogic.js       # Lógica principal do jogo
+    │   └── main.js            # Script principal, inicialização e eventos
+    ├── images/
+    │   ├── logo-jogo.png      # Logo exibido na tela de splash
+    │   ├── splash-bg.jpg      # Imagem de fundo da tela de splash (opcional)
+    │   ├── favicon.ico
+    │   ├── dice_1.png ... dice_6.png # Imagens das faces do dado
+    │   └── avatars/             # Pasta para imagens de avatar dos jogadores
+    │       └── avatar1.png
+    │       └── ...
+    ├── font/
+    │   └── Nunito.ttf           # Arquivo da fonte Nunito (ou Nunito-VariableFont_wght.ttf)
+    └── sounds/                  # Pasta para arquivos de som (opcional)
+        └── dice_roll.mp3
+        └── ...
+
 
 ## Tecnologias Utilizadas
 
 *   HTML5
-*   CSS3
-*   JavaScript (Vanilla JS)
+*   CSS3 (com Variáveis CSS, Flexbox, Grid)
+*   JavaScript (ES6+)
 
 ## Como Jogar
 
@@ -87,15 +128,29 @@ As perguntas do jogo são carregadas do arquivo `data/perguntas.json`. Você pod
 
 ```json
 {
-  "id": 1, 
-  "tipo": "multipla_escolha", 
-  "texto": "QUAL A FORMA SIMPLIFICADA DA FRAÇÃO 4/24?", 
-  "opcoes": ["12/2", "2/12", "1/6", "6/1"], 
-  "resposta_correta": "1/6", 
-  "tempo": 45, 
-  "pontos": 20,
-  "categoria": "Geografia",
-  "dificuldade": "Fácil"
+    "id": 1,
+    "texto": "Qual a capital da França?",
+    "opcoes": ["Paris", "Londres", "Berlim", "Madri"],
+    "resposta_correta": "Paris",
+    "pontos": 10,
+    "tempo": 15,
+    "categoria": "Geografia",
+    "dificuldade": "Fácil",
+    "ano_turma": ["6º Ano", "Todos"],
+    "bimestre": "1º Bimestre"
+},
+{
+    "id": 2,
+    "tipo": "verdadeiro_falso",
+    "texto": "A Muralha da China é visível do espaço a olho nu.",
+    "opcoes": ["VERDADEIRO", "FALSO"],
+    "resposta_correta": "FALSO",
+    "tempo": 20,
+    "pontos": 15,
+    "categoria": "Geral",
+    "dificuldade": "Fácil",
+    "ano_turma": "8º Ano",
+    "bimestre": "2º Bimestre"
 }
 ```
 
@@ -109,6 +164,8 @@ As perguntas do jogo são carregadas do arquivo `data/perguntas.json`. Você pod
 *   `pontos`: Pontos ganhos ao acertar (número).
 *   `categoria`: Categoria da pergunta (componente currícular / disciplina) (string).
 *   `dificuldade`: Nível da dificuldade da questão (string).
+*   `ano_turma`: Informação individual ou array de ano/turma (entre colchetes) para filtragem na tela de configuração (array / string).
+*   `bimestre`: Bimestre relacionado a questão (string).
 
 **Observações:**
 *   O arquivo `perguntas.json` deve ser um array `[]` válido de objetos de pergunta.
