@@ -95,6 +95,7 @@ As perguntas do jogo são carregadas do arquivo `data/perguntas.json`. Você pod
 ```json
 {
     "id": 1,
+    "tipo": "multipla_escolha",
     "texto": "Qual a capital da França?",
     "opcoes": ["Paris", "Londres", "Berlim", "Madri"],
     "resposta_correta": "Paris",

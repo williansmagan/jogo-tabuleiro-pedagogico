@@ -2,6 +2,7 @@
   {
     "id": 1,
     "texto": "Qual a capital da França?",
+    "tipo": "multipla_escolha",
     "opcoes": ["Paris", "Londres", "Berlim", "Madri"],
     "resposta_correta": "Paris",
     "pontos": 10,
@@ -14,6 +15,7 @@
   {
     "id": 2,
     "texto": "Quem pintou a Mona Lisa?",
+    "tipo": "multipla_escolha",
     "opcoes": ["Van Gogh", "Picasso", "Da Vinci", "Monet"],
     "resposta_correta": "Da Vinci",
     "pontos": 10,
@@ -38,6 +40,7 @@
   },
   {
     "id": 4,
+    "tipo": "multipla_escolha",
     "texto": "Qual é a fórmula química da água?",
     "opcoes": ["H2O", "CO2", "O2", "NaCl"],
     "resposta_correta": "H2O",
@@ -50,6 +53,7 @@
   },
   {
     "id": 5,
+    "tipo": "multipla_escolha",
     "texto": "Em que ano o homem pisou na Lua pela primeira vez?",
     "opcoes": ["1969", "1972", "1958", "1981"],
     "resposta_correta": "1969",
