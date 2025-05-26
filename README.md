@@ -261,7 +261,7 @@ Este projeto é de código aberto e contribuições são muito bem-vindas!
 
 *   **Willians Magán da Silva**
 *   ✉️ contato@wmstecnologia.com.br
-*   🐙 [Seu Perfil no GitHub (opcional)]
+*   🐙 [Perfil no GitHub](https://github.com/williansmagan/)
 
 ## Licença
 
