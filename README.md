@@ -1,6 +1,6 @@
 # Desafio do Conhecimento - Jogo de Tabuleiro Digital Educativo
 
-![Logo do Jogo](assets/images/logotipo.png) <!-- Sugestão: Adicione seu logo aqui -->
+![Logo do Jogo](assets/images/logo/logotipo.png) <!-- Sugestão: Adicione seu logo aqui -->
 
 Bem-vindo ao **Desafio do Conhecimento**! Este é um jogo de tabuleiro digital interativo e altamente personalizável, projetado para transformar o aprendizado em uma aventura divertida e engajadora para alunos de diversas idades e níveis.
 
