@@ -11,7 +11,7 @@ const PLAYER_COLORS = [
 let playerIdCounter = 0;
 
 class Player {
-    constructor(name) {
+    constructor(name, permitePontuacaoNegativaConfig = true) { // ADICIONADO NOVO PARÂMETRO com valor padrão
         this.id = `player-${playerIdCounter++}`;
         this.name = name;
         this.score = 0;
@@ -20,6 +20,7 @@ class Player {
         this.isFinished = false;
         this.pawnElement = null; // Referência ao elemento DOM do peão
         this.skipNextTurn = false;
+        this.permitePontuacaoNegativa = permitePontuacaoNegativaConfig; // ARMAZENAR A CONFIGURAÇÃO
     }
 
     addPoints(points) {
@@ -28,7 +29,10 @@ class Player {
 
     losePoints(points) {
         this.score -= points;
-        //if (this.score < 0) this.score = 0; //Para não considerar pontuação negativa, remover o comentário do início da linha
+        // Aplica a lógica baseada na configuração
+        if (!this.permitePontuacaoNegativa && this.score < 0) {
+            this.score = 0;
+        }
     }
 
     resetPoints() {
@@ -36,16 +40,21 @@ class Player {
     }
 
     moveTo(newPosition, totalCasas) {
-        const posicaoFinalLogica = totalCasas + 1; // Posição lógica que representa o FIM
-        if (newPosition >= posicaoFinalLogica) { // Se chegou ou passou do FIM lógico
-            this.position = posicaoFinalLogica;
+        const posicaoLogicaCasaFim = totalCasas + 1; // A casa "FIM" tem o ID lógico de totalCasas + 1
+
+        if (newPosition >= posicaoLogicaCasaFim) {
+            // O jogador chegou ou ultrapassou a casa FIM
+            this.position = posicaoLogicaCasaFim;
             this.isFinished = true;
-            ////console.log(`${this.name} chegou ao FIM! Posição Lógica: ${this.position}`);
-        } else if (newPosition < 0) { // Não pode ir antes do início (posição 0)
+            console.log(`${this.name} CHEGOU AO FIM! Posição Lógica: ${this.position}`);
+        } else if (newPosition < 0) {
+            // Não pode ir para uma posição negativa (antes do início)
             this.position = 0;
-        } else { // Está entre INÍCIO e a última casa numerada, ou na última casa numerada
+            this.isFinished = false; // Garante que não está finalizado se voltou
+        } else {
+            // O jogador está em uma casa numerada (de 1 a totalCasas) ou na casa inicial (0)
             this.position = newPosition;
-            this.isFinished = false; // Garante que não está finalizado se voltou para trás
+            this.isFinished = false; // Garante que não está finalizado se estava no FIM e voltou, ou se está em uma casa numerada.
         }
     }
 

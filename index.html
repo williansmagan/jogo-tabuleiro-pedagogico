@@ -3,48 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JOGO DE TABULEIRO DIGITAL</title>
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="description" content="Jogo de tabuleiro digital com conteúdo pedagógico">
+    <title>JOGO DE TABULEIRO DIGITAL EDUCATIVO</title> <!-- Título mais descritivo -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <meta name="description" content="Jogo de tabuleiro digital com conteúdo pedagógico personalizável.">
     <meta name="author" content="Willians Magán da Silva">
     <meta name="copyright" content="© 2025 WMS Tecnologia/Willians Magán da Silva">
+    <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon"> <!-- Sugestão: Adicionar um favicon -->
 </head>
 <body>
-    <div id="tela-cadastro" class="tela ativa">
-        <h1>CADASTRO DE JOGADORES</h1>
+    <div id="tela-splash" class="tela ativa">
+        <div class="splash-background"></div>
+        <div class="splash-content">
+            <img src="./assets/images/logo-jogo.png" alt="Logo do Jogo" class="splash-logo">
+            <h1>Bem-vindo ao Desafio do Conhecimento!</h1> <!-- Nome mais chamativo -->
+            <div class="splash-info">
+                <p>Um jogo educativo e divertido para testar seus conhecimentos e aprender brincando.</p>
+                <p>Desenvolvido por: Willians Magán da Silva</p>
+                <p>Versão: 1.1.0</p> <!-- Atualizar versão -->
+            </div>
+            <div class="loader-container">
+                <div class="loader"></div>
+                <p id="loading-status">Carregando o universo do saber...</p>
+            </div>
+            <button id="btn-iniciar-cadastro" style="display: none;">Começar Aventura!</button>
+        </div>
+    </div>
+
+    <div id="tela-cadastro" class="tela">
+        <h1>Monte sua Equipe de Exploradores</h1>
         <div id="form-cadastro">
-            <input type="text" id="nome-jogador" placeholder="Nome do Jogador">
-            <button id="btn-add-jogador">ADICONAR JOGADOR</button>
+            <input type="text" id="nome-jogador" placeholder="Nome do Explorador">
+            <button id="btn-add-jogador">Adicionar Explorador</button>
         </div>
         <div id="lista-jogadores-cadastrados">
-            <h2>JOGADORES CADASTRADOS (NÚMERO MÁXIMO: 40):</h2>
-            <ul id="jogadores-ul"></ul>
+            <h2>Exploradores Convocados (Máximo: 40):</h2>
+            <ul id="jogadores-ul">
+            </ul>
         </div>
-        <button id="btn-ir-configuracao" disabled>PRÓXIMO: CONFIGURAR TABULEIRO</button>
+        <button id="btn-ir-configuracao" disabled>Próximo: Ajustar o Mapa do Tesouro</button>
     </div>
 
     <div id="tela-configuracao" class="tela">
-        <h1>CONFIGURAÇÃO DO JOGO</h1>
-        <div>
-            <label for="num-casas">NÚMERO DE CASAS DO TABULEIRO (DEVE ESTAR ENTRE 10 E 100):</label>
-            <input type="number" id="num-casas" min="10" max="100" value="30">
+        <h1>Configurações do Mapa do Tesouro</h1>
+        <div class="config-grid">
+            <div class="config-item">
+                <label for="num-casas">Extensão do Mapa (casas, 10-100):</label>
+                <input type="number" id="num-casas" min="10" max="100" value="30">
+            </div>
+            <div class="config-item">
+                <label for="num-casas-especiais">Casas Surpresa (nº ou %):</label>
+                <input type="text" id="num-casas-especiais" value="30%" placeholder="Ex: 5 ou 30%">
+            </div>
+            <div class="config-item">
+                <label for="num-casas-perguntas">Casas de Desafio (nº ou auto):</label>
+                <input type="text" id="num-casas-perguntas" placeholder="Automático">
+            </div>
+            <div class="config-item">
+                <label for="tempo-lancamento-dado">Tempo para lançar dado (5-60s):</label>
+                <input type="number" id="tempo-lancamento-dado" min="5" max="60" value="10">
+            </div>
         </div>
-        <div>
-            <label for="num-casas-especiais">CASAS ESPECIAIS (EXEMPLO: 5 OU 30%):</label>
-            <input type="text" id="num-casas-especiais" value="30%"> <!-- Pode ser número ou % -->
+
+        <div class="config-section">
+            <h2>Opções Visuais e de Jogo:</h2>
+            <div class="config-options-flex">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="chk-caixa-alta">
+                    <label for="chk-caixa-alta">Textos em CAIXA ALTA</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="chk-pontuacao-negativa" checked>
+                    <label for="chk-pontuacao-negativa">Permitir Pontos Negativos</label>
+                </div>
+            </div>
         </div>
-        <div>
-            <label for="num-casas-perguntas">CASAS DE PERGUNTAS (EXEMPLO: 10, OU DEIXE EM BRANCO PARA AUTOMÁTICO):</label>
-            <input type="text" id="num-casas-perguntas" placeholder="Automático"> <!-- Opcional -->
+
+        <div class="config-section config-filtros-perguntas">
+            <h2>Filtros para os Desafios (Perguntas):</h2>
+
+            <!-- NOVO: Filtro de Bimestre -->
+            <div class="filtro-container">
+                <label>Bimestre dos Desafios:</label>
+                <div id="checkbox-container-bimestre" class="checkbox-group">
+                    <!-- Checkboxes de bimestre serão populados pelo JS -->
+                </div>
+            </div>
+
+            <!-- MODIFICADO: Filtro de Ano/Turma para Checkboxes -->
+            <div class="filtro-container">
+                <label>Ano/Turma dos Desafios:</label>
+                <div id="checkbox-container-ano-turma" class="checkbox-group">
+                    <!-- Checkboxes de ano/turma serão populados pelo JS -->
+                </div>
+            </div>
+
+            <div class="filtro-container">
+                <label>Componente Curricular (Matéria):</label>
+                <div id="checkbox-container-categoria" class="checkbox-group">
+                    <!-- Checkboxes de categoria (componente) serão populados pelo JS -->
+                </div>
+            </div>
+
+            <div class="filtro-container">
+                <label for="select-dificuldade-pergunta">Nível de Dificuldade:</label>
+                <select id="select-dificuldade-pergunta">
+                    <option value="todas">Todos os Níveis</option>
+                    <!-- Opções serão populadas pelo JS -->
+                </select>
+            </div>
         </div>
-        <button id="btn-iniciar-jogo">INICIAR JOGO!</button>
+        <button id="btn-iniciar-jogo">Iniciar Expedição!</button>
     </div>
 
     <div id="tela-jogo" class="tela">
         <header>
-            <h1>JOGO EM ANDAMENTO</h1>
+            <h1>A Expedição Começou!</h1>
             <div id="jogador-atual-info">
-                TURNO DE: <span id="nome-jogador-atual"></span> | PONTOS: <span id="pontos-jogador-atual">0</span>
+                Turno do Explorador: <span id="nome-jogador-atual"></span> | Tesouro Acumulado: <span id="pontos-jogador-atual">0</span>
             </div>
         </header>
 
@@ -54,111 +129,120 @@
             </div>
 
             <aside id="sidebar-jogo">
-                <div id="controle-dado">
-                    <img src="assets/images/dice_placeholder.png" alt="Dado" id="img-dado" width="80">
-                    <button id="btn-lancar-dado">LANÇAR DADO</button>
-                    <p>RESULTADO: <span id="resultado-dado">-</span></p>
-                    <p id="roll-dice-timer-display" style="color: red; font-weight: bold;"></p> <!-- NOVO DISPLAY -->
+                <div id="controle-dado" class="sidebar-card">
+                    <img src="./assets/images/dice_placeholder.png" alt="Dado Mágico" id="img-dado">
+                    <button id="btn-lancar-dado">Lançar Dado Mágico</button>
+                    <p>Sorte Lançada: <span id="resultado-dado">-</span></p>
+                    <p id="roll-dice-timer-display" style="visibility: hidden;"></p>
+                    <div class="roll-dice-timer-bar-container" style="visibility: hidden;">
+                        <div id="roll-dice-timer-bar"></div>
+                    </div>
                 </div>
 
-                <div id="ranking-container">
-                    <h2>RANKING</h2>
+                <div id="ranking-container" class="sidebar-card">
+                    <h2>Placar dos Exploradores</h2>
                     <ul id="ranking-ul"></ul>
                 </div>
 
-                <!-- NOVO BOTÃO DE ENCERRAR JOGO -->
-                <div id="controle-jogo-extra">
-                    <button id="btn-encerrar-jogo-manual" class="btn-perigo">ENCERRAR JOGO</button>
+                <div id="controle-jogo-extra" class="sidebar-card">
+                     <h3>Opções da Partida</h3>
+                    <button id="btn-encerrar-jogo-manual" class="btn-perigo">Encerrar Expedição</button>
                 </div>
-
             </aside>
         </main>
 
         <div id="modal-pergunta" class="modal escondido">
             <div class="modal-conteudo">
-                <h3 id="pergunta-texto"></h3>
-                <div id="pergunta-opcoes">
-                    <!-- Opções serão geradas aqui -->
+                <div class="pergunta-meta-info">
+                    <span id="pergunta-bimestre-display">Bimestre: -</span> <!-- NOVO -->
+                    <span id="pergunta-categoria-display">Componente: -</span>
+                    <span id="pergunta-dificuldade-display">Dificuldade: -</span>
+                    <span id="pergunta-ano-turma-display">Ano/Turma: -</span>
                 </div>
-                <p>TEMPO: <span id="pergunta-tempo"></span>s</p>
+                <h3 id="pergunta-texto">Enigma para decifrar...</h3>
+                <div id="pergunta-opcoes">
+                </div>
+                <div class="pergunta-tempo-container">
+                    <div id="pergunta-tempo-barra"></div>
+                </div>
                 <p id="feedback-resposta"></p>
             </div>
         </div>
 
         <div id="modal-acao-especial" class="modal escondido">
             <div class="modal-conteudo">
-                <h3 id="acao-especial-titulo">AÇÃO ESPECIAL</h3>
+                <h3 id="acao-especial-titulo">Surpresa no Caminho!</h3>
                 <p id="acao-especial-descricao"></p>
                 <div id="acao-especial-opcoes-jogador">
-                    <!-- Para escolher outro jogador -->
                 </div>
-                <button id="btn-confirmar-acao-especial">OK</button>
+                <button id="btn-confirmar-acao-especial">Entendido!</button>
+            </div>
+        </div>
+
+        <div id="modal-sorteio-acao" class="modal escondido">
+            <div class="modal-conteudo">
+                <h3>Casa da Sorte (ou Revés)!</h3>
+                <p>Você caiu em uma casa especial! Clique no botão abaixo para descobrir o que o destino reserva:</p>
+                <button id="btn-sortear-acao-confirmar">Revelar Destino!</button>
             </div>
         </div>
     </div>
 
     <div id="tela-fim-jogo" class="tela">
-        <h1>FIM DE JOGO!</h1>
-        <h2>PÓDIO DOS CAMPEÕES:</h2>
+        <h1>Expedição Concluída!</h1>
+        <h2>Pódio dos Maiores Exploradores</h2>
 
-        <div id="fim-jogo-conteudo-principal"> <!-- NOVO WRAPPER -->
+        <div id="fim-jogo-conteudo-principal">
             <div id="podium">
-                <div class="lugar" id="lugar-2">
+                <div class="lugar" id="lugar-2"> <!-- 2o Lugar -->
+                    <div class="player-avatar-podium"></div>
                     <p class="nome-podium">-</p>
                     <div class="barra-podium" id="barra-2"><span></span></div>
-                    <p class="pontos-podium">-</p>
+                    <p class="pontos-podium">- pts</p>
                 </div>
-                <div class="lugar" id="lugar-1">
+                <div class="lugar" id="lugar-1"> <!-- 1o Lugar -->
+                    <div class="player-avatar-podium champion"></div>
                     <p class="nome-podium">-</p>
                     <div class="barra-podium" id="barra-1"><span></span></div>
-                    <p class="pontos-podium">-</p>
+                    <p class="pontos-podium">- pts</p>
                 </div>
-                <div class="lugar" id="lugar-3">
+                <div class="lugar" id="lugar-3"> <!-- 3o Lugar -->
+                    <div class="player-avatar-podium"></div>
                     <p class="nome-podium">-</p>
                     <div class="barra-podium" id="barra-3"><span></span></div>
-                    <p class="pontos-podium">-</p>
+                    <p class="pontos-podium">- pts</p>
                 </div>
             </div>
 
-            <div id="ranking-completo-container"> <!-- Remova o style="margin-top: 30px;" se tiver -->
-                <h3>CLASSIFICAÇÃO GERAL</h3>
+            <div id="ranking-completo-container">
+                <h3>Classificação Geral da Expedição</h3>
                 <table id="tabela-ranking-completo">
                     <thead>
                         <tr>
-                            <th>POSIÇÃO</th>
-                            <th>JOGADOR</th>
-                            <th>PONTUAÇÃO</th>
+                            <th>Pos.</th>
+                            <th>Explorador</th>
+                            <th>Tesouro</th>
                         </tr>
                     </thead>
                     <tbody id="corpo-tabela-ranking-completo">
-                        <!-- Linhas serão adicionadas pelo JS -->
                     </tbody>
                 </table>
             </div>
         </div>
-
-        <button id="btn-jogar-novamente">NOVO JOGO</button>
+        <button id="btn-jogar-novamente">Nova Expedição!</button>
     </div>
 
-    <div id="modal-sorteio-acao" class="modal escondido"> <!-- NOVO MODAL -->
-        <div class="modal-conteudo">
-            <h3>CASA DE AÇÃO:</h3>
-            <p>VOCÊ CAIU EM UMA CASA ESPECIAL! CLIQUE NO BOTÃO ABAIXO PARA SORTEAR UMA AÇÃO:</p>
-            <button id="btn-sortear-acao-confirmar">SORTEAR AÇÃO!</button>
-        </div>
-    </div>
-
-    <script src="js/player.js"></script>
-    <script src="js/questions.js"></script>
-    <script src="js/audio.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/gameLogic.js"></script>
-    <script src="js/main.js"></script>
+    <script src="./assets/js/player.js"></script>
+    <script src="./assets/js/questions.js"></script>
+    <script src="./assets/js/audio.js"></script>
+    <script src="./assets/js/animations.js"></script>
+    <script src="./assets/js/ui.js"></script>
+    <script src="./assets/js/gameLogic.js"></script>
+    <script src="./assets/js/main.js"></script>
 
     <footer id="rodape-principal">
         <p>© 2025 WMS Tecnologia. Todos os direitos reservados.</p>
-        <p>Desenvolvido por: Willians Magán da Silva (contato@wmstecnologia.com.br).</p>
+        <p>Desenvolvido com <span class="heart-icon">❤</span> por Willians Magán da Silva (contato@wmstecnologia.com.br)</p>
     </footer>
 
 </body>

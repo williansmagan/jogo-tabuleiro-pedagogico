@@ -1,0 +1,242 @@
+Sim, é totalmente possível realizar esses ajustes! No entanto, a primeira solicitação (cadastro gráfico de perguntas com salvamento direto no arquivo `perguntas.json` do servidor) é **significativamente mais complexa** de implementar em um ambiente puramente front-end (JavaScript no navegador) como o seu projeto atual.
+
+Vamos dividir em partes:
+
+### 1. Adicionar Campo "Ano/Turma" e Filtragem
+
+Esta parte é mais direta e envolve alterações no front-end e na lógica de filtragem.
+
+**Passos:**
+
+1.  **Atualizar a Estrutura de Dados (JSON e Classe `Question` se existir):**
+    *   Adicione um novo campo `ano_turma` (ou similar) a cada objeto de pergunta no seu `perguntas.json`. Pode ser uma string única (ex: "6º Ano") ou um array de strings se uma pergunta puder pertencer a múltiplos anos/turmas (ex: `["6º Ano", "7º Ano"]`). Para começar, uma string única é mais simples.
+    *   Se você tiver uma classe `Question` no seu JavaScript (não vi nos arquivos, mas é uma boa prática para objetos mais complexos), adicione essa propriedade a ela também.
+
+    **Exemplo de `perguntas.json` modificado:**
+    ```json
+    [
+      {
+        "id": 1,
+        "texto": "Qual a capital da França?",
+        "opcoes": ["Paris", "Londres", "Berlim", "Madri"],
+        "resposta_correta": "Paris",
+        "pontos": 10,
+        "tempo": 15,
+        "categoria": "Geografia",
+        "dificuldade": "Fácil",
+        "ano_turma": "6º Ano" // NOVO CAMPO
+      },
+      {
+        "id": 2,
+        "texto": "Quem pintou a Mona Lisa?",
+        "opcoes": ["Van Gogh", "Picasso", "Da Vinci", "Monet"],
+        "resposta_correta": "Da Vinci",
+        "pontos": 10,
+        "tempo": 20,
+        "categoria": "Arte",
+        "dificuldade": "Fácil",
+        "ano_turma": "Todos" // Exemplo para perguntas gerais
+      },
+      {
+        "id": 5,
+        "texto": "Em que ano o homem pisou na Lua pela primeira vez?",
+        "opcoes": ["1969", "1972", "1958", "1981"],
+        "resposta_correta": "1969",
+        "pontos": 15,
+        "tempo": 20,
+        "categoria": "História",
+        "dificuldade": "Difícil",
+        "ano_turma": "9º Ano"
+      }
+      // ... restante das perguntas atualizadas
+    ]
+    ```
+
+2.  **Modificar a Tela de Configuração (`index.html` e `main.js`):**
+    *   **HTML (`index.html`):** Adicione um novo elemento (provavelmente um `<select>` ou um grupo de checkboxes) na `div#tela-configuracao` para o usuário selecionar o(s) ano(s)/turma(s).
+        ```html
+        <!-- Dentro de <div id="tela-configuracao" class="tela"> -->
+        <!-- ... outros campos de configuração ... -->
+
+        <!-- NOVO FILTRO DE ANO/TURMA -->
+        <div class="filtro-container"> <!-- Reutilizando a classe para consistência -->
+            <label for="select-ano-turma">Ano/Turma das Perguntas:</label>
+            <select id="select-ano-turma">
+                <option value="todos">Todos os Anos/Turmas</option>
+                <!-- Opções serão populadas pelo JS ou podem ser fixas se você souber os valores -->
+            </select>
+        </div>
+        ```
+    *   **JavaScript (`main.js` - `popularFiltrosDePerguntas`):**
+        *   Modifique a função `popularFiltrosDePerguntas` para extrair os valores únicos de `ano_turma` das perguntas carregadas e popular o novo `<select>` (ou checkboxes).
+        *   Similar ao que você faz para categorias e dificuldades.
+
+        ```javascript
+        // js/main.js
+        function popularFiltrosDePerguntas(questions) {
+            // ... (código existente para categorias e dificuldades) ...
+
+            const selectAnoTurma = document.getElementById('select-ano-turma'); // NOVO SELETOR
+
+            // Limpar e popular select de ano/turma
+            if (selectAnoTurma) {
+                const anosUnicos = new Set(questions.map(q => q.ano_turma).filter(Boolean)); // Filtra valores nulos/undefined
+                selectAnoTurma.innerHTML = '<option value="todos">Todos os Anos/Turmas</option>';
+                anosUnicos.forEach(ano => {
+                    const option = document.createElement('option');
+                    option.value = ano;
+                    option.textContent = ano;
+                    selectAnoTurma.appendChild(option);
+                });
+            } else {
+                console.error("ERRO: Elemento 'select-ano-turma' não encontrado no DOM.");
+            }
+        }
+        ```
+    *   **JavaScript (`main.js` - `btnIniciarJogo` event listener):**
+        *   Colete o valor selecionado para ano/turma.
+        *   Passe esse valor para `game.setupGame`.
+
+        ```javascript
+        // js/main.js
+        btnIniciarJogo.addEventListener('click', async () => {
+            // ... (coleta de outros valores) ...
+            const selectAnoTurma = document.getElementById('select-ano-turma'); // NOVO
+            const anoTurmaSelecionadoValue = selectAnoTurma ? selectAnoTurma.value : 'todos'; // NOVO
+
+            // ... (validações) ...
+            try {
+                await game.setupGame(
+                    tempPlayerNames,
+                    numCasasValue,
+                    configCasasEspeciaisValue,
+                    configCasasPerguntasValue,
+                    filtroCategoriasFinal,
+                    dificuldadeSelecionadaValue,
+                    allRawQuestions,
+                    permitePontuacaoNegativa,
+                    tempoLancamentoDadoSegundos,
+                    anoTurmaSelecionadoValue // NOVO PARÂMETRO
+                );
+            } // ... (catch e finally) ...
+        });
+        ```
+
+3.  **Modificar a Lógica de Filtragem de Perguntas (`gameLogic.js`):**
+    *   **`game.setupGame`:**
+        *   Receba o novo parâmetro `anoTurmaFiltro`.
+        *   Aplique o filtro de ano/turma ao selecionar as `gameQuestions`.
+
+        ```javascript
+        // js/gameLogic.js
+        game.setupGame = async function(playerNamesArray, numTotalCasas, configEspeciais, configPerguntas, categoriasFiltro, dificuldadeFiltro, rawQuestions, permitePontuacaoNegativaConfig, tempoLancamentoDadoSeg, anoTurmaFiltro) { // NOVO PARÂMETRO
+            // ... (configurações iniciais) ...
+            this.rollDiceTimeoutDurationMs = tempoLancamentoDadoSeg * 1000;
+
+            // ... (criação de jogadores) ...
+
+            let perguntasFiltradas = [...rawQuestions];
+
+            // Filtro de Categoria
+            if (categoriasFiltro && Array.isArray(categoriasFiltro) && !categoriasFiltro.includes('todas') && categoriasFiltro.length > 0) {
+                perguntasFiltradas = perguntasFiltradas.filter(q => q.categoria && categoriasFiltro.includes(q.categoria));
+            }
+            // Filtro de Dificuldade
+            if (dificuldadeFiltro && dificuldadeFiltro !== 'todas') {
+                perguntasFiltradas = perguntasFiltradas.filter(q => q.dificuldade === dificuldadeFiltro);
+            }
+            // NOVO FILTRO DE ANO/TURMA
+            if (anoTurmaFiltro && anoTurmaFiltro !== 'todos') {
+                perguntasFiltradas = perguntasFiltradas.filter(q => {
+                    if (Array.isArray(q.ano_turma)) { // Se ano_turma for um array
+                        return q.ano_turma.includes(anoTurmaFiltro);
+                    }
+                    return q.ano_turma === anoTurmaFiltro; // Se for uma string única
+                });
+            }
+
+            if (perguntasFiltradas.length === 0) {
+                // ... (lógica de fallback) ...
+            } else {
+                this.gameQuestions = perguntasFiltradas;
+            }
+            // ... (resto da função setupGame) ...
+        };
+        ```
+
+4.  **Exibir "Ano/Turma" no Modal da Pergunta (Opcional, mas bom para feedback):**
+    *   **HTML (`index.html`):** Adicione um span no `modal-pergunta`.
+        ```html
+        <div id="modal-pergunta" class="modal escondido">
+            <div class="modal-conteudo">
+                <div class="pergunta-meta-info">
+                    <span id="pergunta-categoria-display">Categoria: -</span>
+                    <span id="pergunta-dificuldade-display">Dificuldade: -</span>
+                    <span id="pergunta-ano-turma-display">Ano/Turma: -</span> <!-- NOVO SPAN -->
+                </div>
+                <h3 id="pergunta-texto"></h3>
+                <!-- ... -->
+            </div>
+        </div>
+        ```
+    *   **JavaScript (`ui.js`):** Atualize o novo span em `ui.showQuestionModal`.
+        ```javascript
+        // js/ui.js
+        const ui = {
+            // ...
+            perguntaAnoTurmaDisplay: document.getElementById('pergunta-ano-turma-display'), // NOVO SELETOR
+            // ...
+            showQuestionModal(question, onAnswerCallback) {
+                if (this.perguntaCategoriaDisplay) { /*...*/ }
+                if (this.perguntaDificuldadeDisplay) { /*...*/ }
+
+                if (this.perguntaAnoTurmaDisplay) { // NOVO BLOCO
+                    this.perguntaAnoTurmaDisplay.textContent = `Ano/Turma: ${question.ano_turma || 'N/A'}`;
+                }
+                // ... (resto da função)
+            },
+            // ...
+        };
+        ```
+
+Com esses passos, você terá o filtro de "Ano/Turma" funcional.
+
+---
+
+### 2. Cadastro Gráfico de Perguntas com Salvamento no JSON (Desafio Maior)
+
+Salvar diretamente em um arquivo `.json` no servidor a partir do JavaScript do navegador (front-end) **não é possível por motivos de segurança**. O navegador não tem permissão para escrever arquivos no sistema de arquivos do servidor diretamente.
+
+**Abordagens Possíveis (do mais simples para o mais complexo em termos de infraestrutura):**
+
+*   **A. Edição Offline e Upload Manual (Solução Simples, Sem Back-end):**
+    *   **Interface de Edição:** Crie uma nova tela no seu jogo (ex: `tela-admin-perguntas`) com formulários para adicionar, editar e excluir perguntas.
+    *   **Gerenciamento em Memória:** As perguntas seriam carregadas do `perguntas.json` para a memória (uma variável JavaScript, como `allRawQuestions` já faz). A interface de edição manipularia essa variável.
+    *   **"Salvar" (Exportar):** Crie um botão "Exportar JSON". Ao clicar, o JavaScript converteria o array de perguntas em memória para uma string JSON (`JSON.stringify(arrayDePerguntas, null, 2)`) e ofereceria essa string para o usuário baixar como um arquivo `.json` (usando a técnica de criar um link `<a>` com atributo `download`).
+    *   **Atualização:** O usuário então precisaria substituir manualmente o arquivo `perguntas.json` no servidor pelo arquivo baixado.
+    *   **Prós:** Relativamente simples de implementar no front-end. Não requer back-end.
+    *   **Contras:** Processo manual de atualização do arquivo no servidor. Propenso a erros se o usuário não fizer o upload corretamente. Não é uma edição "em tempo real".
+
+*   **B. Usar o LocalStorage do Navegador (Persistência Local, Sem Back-end):**
+    *   **Interface de Edição:** Similar à opção A.
+    *   **Salvamento:** Em vez de exportar, as alterações nas perguntas (adicionar, editar, excluir) seriam salvas no `localStorage` do navegador do usuário.
+    *   **Carregamento:** Ao iniciar o jogo, você verificaria se há perguntas no `localStorage`. Se sim, usaria elas. Caso contrário, carregaria do `perguntas.json` (como um fallback ou estado inicial).
+    *   **Prós:** Persistência das edições para o usuário que as fez, sem precisar de upload.
+    *   **Contras:**
+        *   As perguntas editadas só ficam disponíveis naquele navegador/máquina específica. Outros usuários (ou o mesmo usuário em outro navegador) não verão as alterações.
+        *   Não atualiza o `perguntas.json` original no servidor.
+        *   `localStorage` tem limites de tamanho (geralmente 5-10MB), o que pode ser um problema para um número muito grande de perguntas.
+        *   Se o usuário limpar os dados do navegador, as edições são perdidas.
+    *   **Para quem seria útil:** Se o "administrador" das perguntas é sempre a mesma pessoa usando o mesmo computador, e o objetivo é apenas facilitar a edição para essa pessoa antes de, talvez, usar a Opção A para atualizar o arquivo principal.
+
+*   **C. Implementar um Back-end (Solução Completa e Robusta):**
+    *   **Tecnologias Back-end:** Você precisaria de um servidor com uma linguagem de programação como Node.js (com Express.js), Python (com Flask/Django), PHP, Ruby on Rails, etc.
+    *   **API Endpoints:**
+        *   `GET /api/perguntas`: O front-end chamaria esse endpoint para carregar as perguntas (o back-end leria do `perguntas.json` ou de um banco de dados).
+        *   `POST /api/perguntas`: Para adicionar uma nova pergunta. O front-end enviaria os dados da nova pergunta, e o back-end a adicionaria ao `perguntas.json` (ou banco de dados) e o salvaria.
+        *   `PUT /api/perguntas/:id`: Para atualizar uma pergunta existente.
+        *   `DELETE /api/perguntas/:id`: Para excluir uma pergunta.
+    *   **Front-end:**
+        *   A tela de administração de perguntas faria requisições `fetch` (ou `XMLHttpRequest` / `axios`) para esses endpoints da API.
+        *   Ao carregar o jogo, `loadQuestions()` em `questions.js` faria um `fetch` para `GET /api/perguntas` em vez de `perguntas.json` diretamente.
+    *   **Prós:** Edição gráfica real com

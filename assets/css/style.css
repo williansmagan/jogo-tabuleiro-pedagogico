@@ -1,0 +1,877 @@
+/* css/style.css (Layout Modernizado) */
+/* ========================================
+ *   CONFIGURAÇÃO DA FONTE NUNITO
+ *   ======================================== */
+@font-face {
+    font-family: 'Nunito'; /* Nome que você usará no CSS */
+    /* Atualize 'Nunito-VariableFont_wght.ttf' para o nome EXATO do seu arquivo de fonte variável */
+    src: url('../font/Nunito.ttf') format('truetype-variations'),
+         url('../font/Nunito.ttf') format('truetype'); /* Fallback para alguns navegadores */
+    font-weight: 100 900; /* Gama de pesos suportada pela fonte variável */
+    font-style: normal oblique 0deg 12deg; /* Se a sua fonte variável suportar itálico/oblique */
+    font-display: swap;
+}
+
+:root {
+    --cor-primaria: #007AFF;
+    --cor-primaria-hover: #005ECB;
+    --cor-secundaria: #FF9500;
+    --cor-secundaria-hover: #E68600;
+    --cor-sucesso: #34C759;
+    --cor-perigo: #FF3B30;
+    --cor-perigo-hover: #E02A1F;
+    --cor-aviso: #FFCC00;
+    --cor-fundo: #F2F2F7;
+    --cor-superficie: #FFFFFF;
+    --cor-texto-principal: #1C1C1E;
+    --cor-texto-secundario: #555; /* Um pouco mais escuro que o original 6D6D72 */
+    --cor-texto-sobre-primaria: #FFFFFF;
+    --cor-texto-sobre-secundaria: #FFFFFF;
+    --cor-borda: #D1D1D6;
+    --cor-borda-input-foco: var(--cor-primaria);
+
+    --fonte-principal: 'Nunito', Arial, sans-serif; /* Adicionado fallback genérico */
+    --raio-borda-padrao: 12px; /* Bordas mais arredondadas */
+    --raio-borda-pequeno: 6px;
+    --sombra-padrao: 0 6px 16px rgba(0, 0, 0, 0.08);
+    --sombra-leve: 0 2px 8px rgba(0,0,0,0.06);
+    --sombra-interna: inset 0 2px 4px rgba(0,0,0,0.05);
+
+    --tamanho-fonte-base: 16px;
+    --tamanho-fonte-pequeno: 0.875em;
+    --tamanho-fonte-grande: 1.25em;
+    --tamanho-fonte-titulo: 1.75em;
+}
+
+/* --- Reset Básico e Configurações Globais --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: var(--fonte-principal);
+    font-size: var(--tamanho-fonte-base);
+    line-height: 1.6;
+    margin: 0;
+    padding: 25px; /* Espaço ao redor do conteúdo principal */
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding-bottom: 70px; /* Para o rodapé fixo */
+}
+
+body.texto-caixa-alta,
+body.texto-caixa-alta .tela,
+body.texto-caixa-alta button,
+body.texto-caixa-alta label,
+body.texto-caixa-alta h1,
+body.texto-caixa-alta h2,
+body.texto-caixa-alta h3,
+body.texto-caixa-alta p,
+body.texto-caixa-alta span:not(.material-icons):not(.heart-icon), /* Evitar ícones */
+body.texto-caixa-alta li,
+body.texto-caixa-alta th,
+body.texto-caixa-alta td,
+body.texto-caixa-alta input[type="text"]::placeholder,
+body.texto-caixa-alta .modal-conteudo,
+body.texto-caixa-alta #rodape-principal p {
+    text-transform: uppercase;
+}
+body.texto-caixa-alta input::placeholder,
+body.texto-caixa-alta textarea::placeholder {
+    text-transform: uppercase;
+}
+
+
+/* --- Estrutura das Telas --- */
+.tela {
+    display: none;
+    background-color: var(--cor-superficie);
+    padding: 30px;
+    border-radius: var(--raio-borda-padrao);
+    box-shadow: var(--sombra-padrao);
+    width: 95%;
+    max-width: 1200px; /* Ajustado para acomodar layout mais largo se necessário */
+}
+
+.tela.ativa {
+    display: block;
+    animation: fadeInTela 0.5s ease-out;
+}
+
+@keyframes fadeInTela {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Tipografia --- */
+h1, h2, h3 {
+    color: var(--cor-primaria);
+    margin-bottom: 0.75em;
+    font-weight: 700; /* Mais peso para títulos */
+}
+h1 { font-size: 2em; text-align: center; margin-bottom: 1em; }
+h2 { font-size: 1.5em; border-bottom: 2px solid var(--cor-fundo); padding-bottom: 0.3em; }
+h3 { font-size: 1.2em; color: var(--cor-texto-secundario); font-weight: 600; }
+
+/* --- Elementos de Formulário --- */
+input[type="text"],
+input[type="number"],
+select {
+    padding: 12px 15px;
+    margin-bottom: 15px; /* Adicionado para espaçamento */
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda-pequeno);
+    font-size: 1em;
+    width: 100%; /* Ocupar largura total por padrão, ajustar em contextos específicos */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: var(--cor-borda-input-foco);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--cor-primaria) 20%, transparent);
+    outline: none;
+}
+
+button {
+    padding: 12px 25px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-sobre-primaria);
+    border: none;
+    border-radius: var(--raio-borda-pequeno);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1em;
+    font-weight: 600;
+    text-align: center;
+}
+button:hover {
+    background-color: var(--cor-primaria-hover);
+    transform: translateY(-2px);
+}
+button:active {
+    transform: translateY(0px);
+}
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: translateY(0);
+}
+
+/* --- Listas (Cadastro de Jogadores, Ranking) --- */
+#jogadores-ul, #ranking-ul {
+list-style: none;
+padding: 0;
+margin-bottom: 20px;
+}
+#jogadores-ul {
+margin: 0 auto 20px auto;
+max-width: 550px; /* Um pouco mais largo para nomes e botões */
+}
+#jogadores-ul li, #ranking-ul li {
+padding: 10px 15px;
+border: 1px solid var(--cor-fundo);
+border-radius: var(--raio-borda-pequeno);
+margin-bottom: 8px;
+display: flex;
+align-items: center;
+font-size: 0.95em;
+background-color: color-mix(in srgb, var(--cor-fundo) 50%, white);
+transition: background-color 0.2s ease;
+}
+#jogadores-ul li:hover {
+background-color: color-mix(in srgb, var(--cor-primaria) 5%, white);
+}
+
+.player-color-indicator {
+    width: 20px; /* Maior */
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 12px;
+    border: 2px solid var(--cor-superficie); /* Borda para destacar */
+    box-shadow: var(--sombra-leve);
+    flex-shrink: 0;
+}
+
+.player-name {
+    flex-grow: 1;
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+.player-actions button {
+    padding: 6px 10px;
+    font-size: 0.85em;
+    margin-left: 8px;
+}
+.player-actions .btn-edit-player {
+    background-color: var(--cor-aviso);
+    color: var(--cor-texto-principal);
+}
+.player-actions .btn-edit-player:hover {
+    background-color: color-mix(in srgb, var(--cor-aviso) 80%, black);
+}
+.player-actions .btn-delete-player {
+    background-color: var(--cor-perigo);
+}
+.player-actions .btn-delete-player:hover {
+    background-color: var(--cor-perigo-hover);
+}
+.edit-player-input {
+    padding: 8px;
+    font-size: 0.95em;
+    flex-grow: 1;
+    border-radius: var(--raio-borda-pequeno);
+    border: 1px solid var(--cor-borda);
+}
+
+/* === Tela Splash === */
+#tela-splash {
+position: fixed;
+top: 0; left: 0; width: 100%; height: 100%;
+z-index: 2000;
+background-color: var(--cor-fundo); /* Cor sólida como fallback */
+padding: 0; box-shadow: none;
+width: 100vw;
+height: 100vh;
+/* display: flex; já está no .ativa */
+}
+#tela-splash.ativa {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+#tela-splash .splash-background {
+position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+background-image: url('../assets/images/splash-bg.jpg'); /* SUBSTITUA CAMINHO */
+background-size: cover; background-position: center; opacity: 0.2;
+z-index: -1;
+}
+#tela-splash .splash-content {
+position: relative;
+background-color: rgba(255, 255, 255, 0.92);
+padding: 35px 50px;
+border-radius: var(--raio-borda-padrao);
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+max-width: 650px;
+width: 90%;
+}
+#tela-splash .splash-logo {
+max-width: 180px; margin-bottom: 25px;
+}
+#tela-splash h1 {
+font-size: clamp(2em, 5vw, 2.8em);
+color: var(--cor-primaria);
+margin-bottom: 15px;
+font-weight: 800; /* Mais destaque */
+}
+#tela-splash .splash-info p {
+font-size: clamp(1em, 2.2vw, 1.15em);
+color: var(--cor-texto-secundario);
+margin-bottom: 10px; line-height: 1.7;
+}
+#tela-splash .loader-container { margin: 30px 0; }
+#tela-splash .loader {
+border: 7px solid var(--cor-fundo);
+border-top: 7px solid var(--cor-primaria);
+border-radius: 50%;
+width: 60px; height: 60px;
+animation: spin 1s linear infinite;
+margin: 0 auto 15px auto;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+#tela-splash #loading-status { font-size: 1.05em; color: var(--cor-texto-secundario); font-style: italic; }
+#tela-splash #btn-iniciar-cadastro {
+padding: 15px 35px; font-size: 1.2em; margin-top: 25px;
+background-color: var(--cor-sucesso); /* Verde para iniciar */
+}
+#tela-splash #btn-iniciar-cadastro:hover {
+background-color: color-mix(in srgb, var(--cor-sucesso) 85%, black);
+}
+
+/* === Tela Cadastro === */
+#form-cadastro {
+display: flex;
+gap: 10px;
+margin-bottom: 25px;
+align-items: center; /* Alinhar input e botão */
+}
+#form-cadastro input[type="text"] {
+flex-grow: 1; /* Input ocupa mais espaço */
+margin-bottom: 0; /* Remover margem inferior padrão do input */
+}
+#form-cadastro button {
+white-space: nowrap; /* Evitar quebra de texto no botão */
+}
+#lista-jogadores-cadastrados h2 {
+font-size: 1.3em;
+margin-top: 20px;
+margin-bottom: 15px;
+}
+#btn-ir-configuracao {
+display: block; /* Ocupar largura total */
+width: fit-content; /* Ajustar largura ao conteúdo */
+margin: 30px auto 0 auto; /* Centralizar */
+background-color: var(--cor-secundaria);
+}
+#btn-ir-configuracao:hover {
+background-color: var(--cor-secundaria-hover);
+}
+
+
+/* === Tela Configuração === */
+#tela-configuracao .config-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 20px;
+margin-bottom: 30px;
+}
+#tela-configuracao .config-item label,
+.config-filtros-perguntas .filtro-container > label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--cor-texto-secundario);
+}
+#tela-configuracao .config-item input,
+#tela-configuracao .config-item select {
+width: 100%;
+}
+
+.config-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--cor-fundo);
+}
+.config-options-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.config-filtros-perguntas .filtro-container {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid var(--cor-fundo);
+    border-radius: var(--raio-borda-pequeno);
+    background-color: color-mix(in srgb, var(--cor-fundo) 30%, white);
+}
+.checkbox-group {
+    display: grid; /* Usar grid para melhor alinhamento */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Colunas responsivas */
+    gap: 12px;
+}
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda-pequeno);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    box-shadow: var(--sombra-leve);
+}
+.checkbox-item:hover {
+    background-color: color-mix(in srgb, var(--cor-primaria) 5%, white);
+    border-color: var(--cor-primaria);
+}
+.checkbox-item input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+    width: auto; /* Resetar largura do input */
+    accent-color: var(--cor-primaria); /* Cor do checkmark */
+}
+.checkbox-item label {
+    margin-bottom: 0;
+    font-weight: normal;
+    color: var(--cor-texto-principal);
+    cursor: pointer;
+    font-size: 0.9em;
+}
+.checkbox-item input[type="checkbox"]:disabled + label {
+    color: #aaa;
+    cursor: not-allowed;
+}
+#btn-iniciar-jogo {
+display: block;
+width: fit-content;
+margin: 40px auto 0 auto;
+padding: 15px 40px; /* Botão maior */
+font-size: 1.1em;
+}
+
+/* === Tela Jogo === */
+#tela-jogo header {
+background-color: var(--cor-primaria);
+color: var(--cor-texto-sobre-primaria);
+padding: 15px 25px;
+text-align: center;
+margin: -30px -30px 20px -30px; /* Esticar para as bordas do .tela */
+border-radius: var(--raio-borda-padrao) var(--raio-borda-padrao) 0 0;
+}
+#tela-jogo header h1 {
+color: var(--cor-texto-sobre-primaria);
+margin: 0;
+font-size: 1.6em;
+}
+#jogador-atual-info {
+font-size: 1.1em;
+font-weight: 600;
+}
+
+#area-principal-jogo {
+display: flex;
+gap: 25px;
+flex-wrap: wrap; /* Para responsividade */
+}
+
+/* --- Tabuleiro --- */
+#tabuleiro-container {
+flex-grow: 1;
+display: grid;
+gap: 8px; /* Espaçamento um pouco maior */
+padding: 15px;
+border: none; /* Remover borda, usar sombra na casa */
+background-color: color-mix(in srgb, var(--cor-primaria) 5%, var(--cor-fundo));
+border-radius: var(--raio-borda-pequeno);
+min-height: 300px;
+align-content: start;
+overflow: auto;
+}
+
+.casa-tabuleiro {
+    border: 1px solid transparent; /* Borda sutil para estrutura */
+    min-height: 70px; /* Altura mínima um pouco maior */
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px;
+    background-color: var(--cor-superficie);
+    position: relative;
+    font-size: var(--tamanho-fonte-pequeno);
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: var(--raio-borda-pequeno);
+    box-shadow: var(--sombra-leve);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.casa-tabuleiro:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.casa-tabuleiro .casa-numero {
+    font-weight: bold;
+    align-self: flex-start;
+    color: var(--cor-texto-secundario);
+    font-size: 0.9em; /* Um pouco menor para não dominar */
+    padding: 2px 4px;
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 3px;
+}
+.casa-tabuleiro.inicio .casa-numero,
+.casa-tabuleiro.fim .casa-numero {
+    align-self: center; margin: auto 0; font-size: 1.4em; font-weight: 800;
+    background-color: transparent; padding: 0;
+}
+
+/* Cores das Casas */
+.casa-tabuleiro.inicio { background-color: var(--cor-sucesso); color: var(--cor-texto-sobre-primaria); }
+.casa-tabuleiro.inicio .casa-numero { color: var(--cor-texto-sobre-primaria); }
+.casa-tabuleiro.fim { background-color: var(--cor-perigo); color: var(--cor-texto-sobre-primaria); }
+.casa-tabuleiro.fim .casa-numero { color: var(--cor-texto-sobre-primaria); }
+.casa-tabuleiro.pergunta { background-color: var(--cor-aviso); }
+.casa-tabuleiro.pergunta .casa-numero { color: var(--cor-texto-principal); }
+.casa-tabuleiro.especial { background-color: var(--cor-secundaria); }
+.casa-tabuleiro.especial .casa-numero { color: var(--cor-texto-principal); }
+
+.casa-tabuleiro.especial.aleatoria {
+    background-color: #CFD8DC; border-style: dashed; border-color: #90A4AE;
+}
+.casa-tabuleiro.especial.aleatoria::after {
+    content: "?"; position: absolute; top: 5px; right: 7px; font-weight: bold; color: #455A64; font-size: 1.5em; opacity: 0.9;
+}
+.casa-tabuleiro.especial.fixa {
+    background-color: color-mix(in srgb, var(--cor-secundaria) 80%, #FFECB3);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--cor-secundaria) 50%, transparent);
+}
+.casa-tabuleiro.especial.fixa::after {
+    content: "!"; position: absolute; top: 5px; right: 7px; font-weight: bold; color: var(--cor-texto-sobre-secundaria); font-size: 1.5em; opacity: 0.9;
+}
+
+.casa-peoes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    width: 100%;
+    min-height: 25px; /* Espaço mínimo para peões */
+}
+.peao {
+    width: clamp(18px, 2.2vw, 24px); /* Peões um pouco maiores */
+    height: clamp(18px, 2.2vw, 24px);
+    border-radius: 50%;
+    border: 2px solid var(--cor-superficie); /* Borda para destacar do fundo da cor do peão */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.6em, 1vw, 0.8em);
+    font-weight: bold;
+    color: var(--cor-superficie);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* --- Sidebar do Jogo --- */
+#sidebar-jogo {
+width: 280px; /* Um pouco mais larga */
+flex-shrink: 0;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+.sidebar-card { /* Nova classe para os cards da sidebar */
+    background-color: var(--cor-superficie);
+    padding: 20px;
+    border-radius: var(--raio-borda-pequeno);
+    box-shadow: var(--sombra-leve);
+    text-align: center;
+}
+.sidebar-card h2, .sidebar-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    color: var(--cor-primaria);
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.sidebar-card h3 { font-size: 1.1em; color: var(--cor-texto-secundario); }
+
+#img-dado {
+display: block;
+margin: 0 auto 15px auto;
+width: 100px; /* Dado maior */
+border-radius: var(--raio-borda-pequeno);
+box-shadow: var(--sombra-leve);
+}
+#controle-dado p { font-size: 1em; margin-top: 10px; }
+#roll-dice-timer-display { color: var(--cor-perigo); font-weight: bold; margin-top: 5px; min-height: 1.2em; visibility: hidden; }
+
+#controle-dado .roll-dice-timer-bar-container {
+visibility: hidden; margin-top: 10px; height: 10px;
+background-color: var(--cor-fundo); border-radius: var(--raio-borda-pequeno); overflow: hidden;
+}
+#controle-dado #roll-dice-timer-bar {
+height: 100%; width: 100%; background-color: var(--cor-sucesso);
+transition: width 0.2s linear, background-color 0.3s ease;
+border-radius: var(--raio-borda-pequeno);
+}
+
+#ranking-ul { text-align: left; }
+#ranking-ul li { font-size: 0.9em; }
+#ranking-ul li.jogador-ativo-ranking {
+background-color: color-mix(in srgb, var(--cor-primaria) 15%, white);
+font-weight: bold;
+border-left: 4px solid var(--cor-primaria);
+padding-left: 12px; /* Ajuste para o border-left */
+margin-left: -15px; /* Ajuste para o padding do li pai */
+position: relative; /* Para z-index se necessário */
+}
+
+#controle-jogo-extra button { width: 100%; }
+
+/* --- Modais --- */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(26, 26, 29, 0.7); /* Fundo mais escuro e moderno */
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000; padding: 20px;
+    backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
+}
+.modal.escondido { display: none; }
+.modal-conteudo {
+    background-color: var(--cor-superficie);
+    padding: 30px;
+    border-radius: var(--raio-borda-padrao);
+    width: 90%;
+    max-width: 550px; /* Um pouco maior */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    max-height: 90vh;
+    overflow-y: auto;
+    font-size: 1em;
+    animation: zoomInModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes zoomInModal {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-conteudo h3 {
+    margin-top: 0; font-size: 1.5em; margin-bottom: 20px; text-align: center;
+}
+.pergunta-meta-info {
+    display: flex;
+    justify-content: space-around; /* Melhor distribuição */
+    flex-wrap: wrap; /* Quebra de linha se necessário */
+    font-size: var(--tamanho-fonte-pequeno);
+    color: var(--cor-texto-secundario);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--cor-borda);
+}
+.pergunta-meta-info span {
+    padding: 4px 8px;
+    border-radius: var(--raio-borda-pequeno);
+    background-color: var(--cor-fundo);
+    margin: 3px; /* Espaçamento entre os spans */
+}
+#pergunta-texto { text-align: left; } /* Manter alinhamento se o h3 geral for center */
+
+#pergunta-opcoes button {
+display: block; width: 100%;
+margin-bottom: 10px;
+background-color: var(--cor-secundaria); /* Cor diferente para opções */
+color: var(--cor-texto-sobre-secundaria);
+font-size: 1em;
+padding: 12px;
+}
+#pergunta-opcoes button:hover {
+background-color: var(--cor-secundaria-hover);
+}
+#pergunta-opcoes button:disabled {
+background-color: #BDBDBD; /* Cinza mais claro para desabilitado */
+opacity: 0.7;
+}
+
+.pergunta-tempo-container {
+    width: 100%; background-color: var(--cor-fundo);
+    border-radius: var(--raio-borda-pequeno); margin: 20px 0;
+    height: 20px; overflow: hidden;
+}
+#pergunta-tempo-barra {
+height: 100%; width: 100%; background-color: var(--cor-sucesso);
+border-radius: var(--raio-borda-pequeno);
+transition: width 0.2s linear, background-color 0.3s ease;
+}
+#feedback-resposta { margin-top: 15px; font-size: 1.1em; text-align: center; }
+#feedback-resposta.correto { color: var(--cor-sucesso); font-weight: bold; }
+#feedback-resposta.incorreto { color: var(--cor-perigo); font-weight: bold; }
+
+/* Modal Ação Especial */
+#acao-especial-opcoes-jogador select { margin-top: 15px; margin-bottom: 20px; }
+#btn-confirmar-acao-especial { display: block; margin: 0 auto; } /* Centralizar botão OK */
+
+/* --- Tela Fim de Jogo / Pódio --- */
+#tela-fim-jogo { text-align: center; }
+#tela-fim-jogo h1 { font-size: 2.2em; }
+#tela-fim-jogo h2 { font-size: 1.7em; margin-bottom: 25px; }
+
+#fim-jogo-conteudo-principal {
+display: flex;
+justify-content: space-around; /* Espaçar pódio e ranking */
+align-items: flex-start;
+gap: 30px;
+margin-top: 30px; margin-bottom: 40px;
+flex-wrap: wrap;
+}
+
+#podium {
+display: flex;
+justify-content: center;
+align-items: flex-end;
+height: 320px; /* Pódio um pouco mais alto */
+gap: 15px;
+flex-shrink: 0;
+position: relative; /* Para o confetti */
+}
+.lugar {
+    display: flex; flex-direction: column; align-items: center;
+    width: 120px; /* Lugares mais largos */
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease-out 0.5s, transform 0.6s ease-out 0.5s;
+}
+.lugar.visible { opacity: 1; transform: translateY(0); }
+
+.player-avatar-podium { /* Novo: para um avatar/cor do jogador no pódio */
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background-color: var(--cor-borda); /* Cor placeholder */
+    margin-bottom: 10px;
+    border: 3px solid var(--cor-superficie);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.player-avatar-podium.champion { /* Destaque para o campeão */
+    width: 70px; height: 70px;
+    border-color: gold; /* Borda dourada para o campeão */
+}
+
+.barra-podium {
+    width: 100px; /* Barras mais largas */
+    color: var(--cor-texto-sobre-primaria);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1.4em; /* Número da posição maior */
+    font-weight: bold;
+    border-radius: var(--raio-borda-pequeno) var(--raio-borda-pequeno) 0 0;
+    height: 0;
+    transition: height 1s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Animação com bounce */
+    position: relative;
+    box-shadow: var(--sombra-leve);
+}
+.barra-podium span {
+    position: absolute; bottom: 15px; left: 50%;
+    transform: translateX(-50%); opacity: 0;
+    transition: opacity 0.4s ease-in-out 0.9s; /* Atraso maior */
+}
+.barra-podium.animated span { opacity: 1; }
+
+/* Cores do pódio */
+#lugar-1 .barra-podium { background-color: gold; }
+#lugar-2 .barra-podium { background-color: silver; }
+#lugar-3 .barra-podium { background-color: #CD7F32; } /* Bronze */
+#lugar-1 .barra-podium span, #lugar-2 .barra-podium span, #lugar-3 .barra-podium span {
+color: var(--cor-texto-principal); /* Texto escuro para contraste */
+text-shadow: none;
+}
+
+
+.nome-podium, .pontos-podium {
+    margin-top: 8px; font-weight: 600; font-size: 1em;
+    color: var(--cor-texto-secundario);
+}
+.nome-podium { font-size: 1.1em; font-weight: 700; color: var(--cor-texto-principal);}
+
+.confetti-container {
+    position: absolute; top: -50px; /* Começar um pouco acima */
+    left: 0; width: 100%; height: 100%;
+    pointer-events: none; overflow: hidden; z-index: 5;
+}
+.confetti {
+    position: absolute; opacity: 0;
+    animation: fall 3.5s ease-out forwards;
+}
+@keyframes fall {
+    0% { transform: translateY(-30vh) rotateZ(0deg); opacity: 1; }
+    100% { transform: translateY(130vh) rotateZ(720deg); opacity: 0; }
+}
+
+#ranking-completo-container {
+opacity: 0; transform: translateY(30px); /* Animação de baixo para cima */
+transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+width: 100%; max-width: 500px; /* Ajustado */
+margin-top: 0; /* Controlado pelo flex-gap */
+}
+#ranking-completo-container.visible { opacity: 1; transform: translateY(0); }
+#ranking-completo-container h3 {
+margin-bottom: 15px;
+font-size: clamp(1.2em, 2.8vw, 1.6em);
+color: var(--cor-texto-secundario);
+}
+#tabela-ranking-completo {
+width: 100%;
+border-collapse: separate; /* Para usar border-spacing */
+border-spacing: 0 5px; /* Espaço entre linhas */
+font-size: clamp(0.9em, 2vw, 1em);
+box-shadow: none; /* Remover sombra, já tem no container */
+}
+#tabela-ranking-completo th, #tabela-ranking-completo td {
+border: none; /* Remover bordas internas da tabela */
+padding: 10px 12px;
+text-align: left;
+background-color: var(--cor-superficie);
+}
+#tabela-ranking-completo th {
+background-color: var(--cor-fundo);
+color: var(--cor-texto-secundario);
+font-weight: 700;
+border-bottom: 2px solid var(--cor-borda);
+}
+#tabela-ranking-completo tr td:first-child, #tabela-ranking-completo tr th:first-child {
+border-top-left-radius: var(--raio-borda-pequeno);
+border-bottom-left-radius: var(--raio-borda-pequeno);
+}
+#tabela-ranking-completo tr td:last-child, #tabela-ranking-completo tr th:last-child {
+border-top-right-radius: var(--raio-borda-pequeno);
+border-bottom-right-radius: var(--raio-borda-pequeno);
+}
+#tabela-ranking-completo td:first-child { text-align: center; font-weight: bold; width: 60px; }
+#tabela-ranking-completo tr:hover td {
+background-color: color-mix(in srgb, var(--cor-primaria) 5%, white);
+}
+
+
+@media (max-width: 900px) { /* Ajuste breakpoint */
+    #fim-jogo-conteudo-principal {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* Maior espaçamento quando empilhado */
+    }
+    #podium { order: 1; height: 280px; }
+    #ranking-completo-container { order: 2; width: 90%; max-width: 500px; }
+}
+@media (max-width: 600px) {
+    #podium { gap: 5px; } /* Menor gap no pódio em telas pequenas */
+    .lugar { width: 90px; }
+    .barra-podium { width: 70px; font-size: 1.2em; }
+    .player-avatar-podium { width: 45px; height: 45px; }
+    .player-avatar-podium.champion { width: 55px; height: 55px; }
+}
+
+
+#btn-jogar-novamente { margin-top: 30px; }
+.btn-perigo { background-color: var(--cor-perigo); }
+.btn-perigo:hover { background-color: var(--cor-perigo-hover); }
+
+/* --- Rodapé --- */
+#rodape-principal {
+position: fixed; left: 0; bottom: 0; width: 100%;
+background-color: var(--cor-texto-principal); /* Fundo escuro */
+color: var(--cor-fundo); /* Texto claro */
+text-align: center;
+padding: 12px 0;
+font-size: var(--tamanho-fonte-pequeno);
+z-index: 1001;
+box-shadow: 0 -3px 8px rgba(0,0,0,0.1);
+}
+#rodape-principal p { margin: 4px 0; }
+.heart-icon { color: var(--cor-perigo); display: inline-block; animation: pulseHeart 1.5s infinite; }
+@keyframes pulseHeart {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Ajustes finais e responsividade */
+@media (max-width: 768px) {
+    body { padding: 15px; padding-bottom: 80px; } /* Mais padding no rodapé para telas menores */
+    .tela { padding: 20px; }
+    h1 { font-size: 1.6em; }
+    h2 { font-size: 1.3em; }
+    #area-principal-jogo { flex-direction: column; }
+    #sidebar-jogo { width: 100%; margin-top: 20px; flex-direction: row; flex-wrap: wrap; justify-content: space-around;}
+    .sidebar-card { flex-basis: calc(50% - 10px); min-width: 250px; } /* Cards da sidebar lado a lado */
+    #controle-dado, #ranking-container { width: 100%; } /* Se for um por linha */
+    #tabuleiro-container { min-height: 250px; } /* Ajustar conforme necessário */
+}
+@media (max-width: 480px) {
+    .sidebar-card { flex-basis: 100%; } /* Cards da sidebar empilhados */
+    #form-cadastro { flex-direction: column; }
+    #form-cadastro input[type="text"] { margin-bottom: 10px; }
+    #jogadores-ul li { flex-direction: column; align-items: flex-start; gap: 5px;}
+    .player-actions { margin-top: 5px; margin-left: 0; }
+    #pergunta-opcoes button { font-size: 0.9em; padding: 10px; }
+}

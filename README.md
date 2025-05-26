@@ -87,13 +87,15 @@ As perguntas do jogo são carregadas do arquivo `data/perguntas.json`. Você pod
 
 ```json
 {
-  "id": "q1", 
+  "id": 1, 
   "tipo": "multipla_escolha", 
   "texto": "QUAL A FORMA SIMPLIFICADA DA FRAÇÃO 4/24?", 
   "opcoes": ["12/2", "2/12", "1/6", "6/1"], 
   "resposta_correta": "1/6", 
   "tempo": 45, 
-  "pontos": 20 
+  "pontos": 20,
+  "categoria": "Geografia",
+  "dificuldade": "Fácil"
 }
 ```
 
@@ -105,6 +107,8 @@ As perguntas do jogo são carregadas do arquivo `data/perguntas.json`. Você pod
 *   `resposta_correta`: A string exata da resposta correta (deve corresponder a uma das `opcoes` para múltipla escolha, ou ao texto da opção correta para V/F).
 *   `tempo`: Tempo em segundos para responder (número).
 *   `pontos`: Pontos ganhos ao acertar (número).
+*   `categoria`: Categoria da pergunta (componente currícular / disciplina) (string).
+*   `dificuldade`: Nível da dificuldade da questão (string).
 
 **Observações:**
 *   O arquivo `perguntas.json` deve ser um array `[]` válido de objetos de pergunta.

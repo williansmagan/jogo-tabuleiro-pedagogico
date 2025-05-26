@@ -1,0 +1,18 @@
+services:
+  php: 
+    image: php:8.3.0-apache
+    container_name: jogo-tabuleiro-php
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./:/var/www/html
+
+#docker-compose exec php docker-php-ext-install pdo pdo_mysql mysqli exif
+#docker exec -it 317da934db10 bash
+#cp /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/
+#apt-get update && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev
+#docker-php-ext-configure gd --with-freetype --with-jpeg
+#docker-php-ext-install -j$(nproc) gd
+#exit
+#docker-compose restart
