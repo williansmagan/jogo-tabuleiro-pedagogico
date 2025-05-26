@@ -34,40 +34,6 @@ Este jogo de tabuleiro permite que múltiplos jogadores (até 40) avancem em um 
 *   **Efeitos Sonoros:** Para uma experiência mais imersiva (requer arquivos de som na pasta `assets/sounds/`).
 *   **Animações:** Movimento de peões, rolagem de dados e pódio animados.
 
-
-## Estrutura de Pastas do Projeto
-
-/
-├── index.html                 # Arquivo principal da interface
-├── data/
-│   ├── perguntas.json         # Banco de dados de perguntas
-│   └── acoes_especiais.json   # Banco de dados de ações especiais
-└── assets/
-    ├── css/
-    │   └── style.css          # Estilos visuais do jogo
-    ├── js/
-    │   ├── player.js          # Classe Player
-    │   ├── questions.js       # Lógica para carregar perguntas
-    │   ├── audio.js           # Controle de áudio
-    │   ├── animations.js      # Lógica de animações
-    │   ├── ui.js              # Manipulação da interface do usuário
-    │   ├── gameLogic.js       # Lógica principal do jogo
-    │   └── main.js            # Script principal, inicialização e eventos
-    ├── images/
-    │   ├── logo-jogo.png      # Logo exibido na tela de splash
-    │   ├── splash-bg.jpg      # Imagem de fundo da tela de splash (opcional)
-    │   ├── favicon.ico
-    │   ├── dice_1.png ... dice_6.png # Imagens das faces do dado
-    │   └── avatars/             # Pasta para imagens de avatar dos jogadores
-    │       └── avatar1.png
-    │       └── ...
-    ├── font/
-    │   └── Nunito.ttf           # Arquivo da fonte Nunito (ou Nunito-VariableFont_wght.ttf)
-    └── sounds/                  # Pasta para arquivos de som (opcional)
-        └── dice_roll.mp3
-        └── ...
-
-
 ## Tecnologias Utilizadas
 
 *   HTML5
@@ -175,23 +141,35 @@ As perguntas do jogo são carregadas do arquivo `data/perguntas.json`. Você pod
 
 ```
 .
-├── index.html                # Arquivo principal do jogo
-├── css/
-│   └── style.css             # Estilos visuais
-├── js/
-│   ├── main.js               # Lógica principal de inicialização e eventos da UI
-│   ├── gameLogic.js          # Regras do jogo, turnos, pontuação, lógica das casas
-│   ├── ui.js                 # Funções para manipular a interface do usuário (DOM)
-│   ├── player.js             # Classe para representar jogadores
-│   ├── questions.js          # Lógica para carregar e gerenciar perguntas
-│   ├── audio.js              # Funções para controle de áudio
-│   └── animations.js         # Funções para animações visuais
+/
+├── index.html                 # Arquivo principal da interface
 ├── data/
-│   └── perguntas.json        # Arquivo com as perguntas e respostas
-|   ├── acoes_especiais.json  # Arquivo com as configurações das casas especiais
+│   ├── perguntas.json         # Banco de dados de perguntas
+│   └── acoes_especiais.json   # Banco de dados de ações especiais
 └── assets/
-    ├── images/               # Imagens (dados, peões, etc.)
-    └── sounds/               # Arquivos de áudio para efeitos sonoros
+    ├── css/
+    │   └── style.css          # Estilos visuais do jogo
+    ├── js/
+    │   ├── player.js          # Classe Player
+    │   ├── questions.js       # Lógica para carregar perguntas
+    │   ├── audio.js           # Controle de áudio
+    │   ├── animations.js      # Lógica de animações
+    │   ├── ui.js              # Manipulação da interface do usuário
+    │   ├── gameLogic.js       # Lógica principal do jogo
+    │   └── main.js            # Script principal, inicialização e eventos
+    ├── images/
+    │   ├── logo-jogo.png      # Logo exibido na tela de splash
+    │   ├── splash-bg.jpg      # Imagem de fundo da tela de splash (opcional)
+    │   ├── favicon.ico
+    │   ├── dice_1.png ... dice_6.png # Imagens das faces do dado
+    │   └── avatars/             # Pasta para imagens de avatar dos jogadores
+    │       └── avatar1.png
+    │       └── ...
+    ├── font/
+    │   └── Nunito.ttf           # Arquivo da fonte Nunito (ou Nunito-VariableFont_wght.ttf)
+    └── sounds/                  # Pasta para arquivos de som (opcional)
+        └── dice_roll.mp3
+        └── ...
 ```
 
 ## Como Contribuir
