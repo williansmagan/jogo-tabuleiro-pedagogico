@@ -50,19 +50,41 @@
     padding: 0;
 }
 
+html { /* Adicione isso se não estiver lá */
+    height: 100%;
+    width: 100%;
+}
 
 body {
     font-family: var(--fonte-principal);
     font-size: var(--tamanho-fonte-base);
     line-height: 1.6;
-    margin: 0;
-    padding: 25px; /* Espaço ao redor do conteúdo principal */
     background-color: var(--cor-fundo);
     color: var(--cor-texto-principal);
+    /* Estas propriedades de flex são para o conteúdo principal APÓS o splash */
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
+    width: 100%; /* Garante que o body ocupe toda a largura */
+    position: relative; /* Útil para o rodapé fixo */
+    /* Padding será controlado pela classe .splash-ativo */
+}
+
+/* Classes para controlar o estado do body quando o splash está ativo */
+html.splash-ativo,
+body.splash-ativo {
+    overflow: hidden !important; /* Previne scroll com alta prioridade */
+}
+
+body.splash-ativo {
+    padding: 0 !important; /* Remove qualquer padding do body com alta prioridade */
+    /* Não precisamos mudar display ou align-items do body, pois #tela-splash é fixed */
+}
+
+/* Aplica padding ao body somente quando o splash NÃO está ativo */
+body:not(.splash-ativo) {
+    padding: 25px; /* Padding padrão para o conteúdo principal */
     padding-bottom: 70px; /* Para o rodapé fixo */
 }
 
@@ -234,68 +256,85 @@ background-color: color-mix(in srgb, var(--cor-primaria) 5%, white);
 
 /* === Tela Splash === */
 #tela-splash {
-position: fixed;
-top: 0; left: 0; width: 100%; height: 100%;
-z-index: 2000;
-background-color: var(--cor-fundo); /* Cor sólida como fallback */
-padding: 0; box-shadow: none;
-width: 100vw;
-height: 100vh;
-/* display: flex; já está no .ativa */
+    display: none; /* Escondido por padrão, JS adiciona/remove 'ativa' */
+    position: fixed; /* Essencial para cobrir toda a tela e ficar fora do fluxo normal */
+    top: 0;
+    left: 0;
+    width: 100vw; /* 100% da largura da viewport */
+    height: 100vh; /* 100% da altura da viewport */
+    z-index: 2000; /* Para ficar acima de todo o resto */
+    background-color: var(--cor-fundo); /* Cor de fallback */
+    padding: 0; /* Sem padding na própria tela de splash */
+    box-shadow: none; /* Sem sombra na própria tela de splash */
+    /* A centralização do conteúdo (.splash-content) será feita aqui */
 }
+
 #tela-splash.ativa {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
+    display: flex !important; /* Mostrar e usar flexbox para centralizar. !important se necessário. */
+    flex-direction: column;
+    justify-content: center; /* Centraliza verticalmente o .splash-content */
+    align-items: center;    /* Centraliza horizontalmente o .splash-content */
+    text-align: center;     /* Para textos dentro do .splash-content, se necessário */
+    animation: fadeInTela 0.5s ease-out; /* Reutilizar a animação */
 }
-#tela-splash .splash-background {
-position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-background-image: url('../assets/images/splash-bg.jpg'); /* SUBSTITUA CAMINHO */
-background-size: cover; background-position: center; opacity: 0.2;
-z-index: -1;
+
+#tela-splash .splash-background { /* Continua como antes, deve funcionar */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/splash/splash-bg.png'); /* CONFIRME O CAMINHO DA SUA IMAGEM */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 1; /* Fica atrás do .splash-content */
 }
-#tela-splash .splash-content {
-position: relative;
-background-color: rgba(255, 255, 255, 0.92);
-padding: 35px 50px;
-border-radius: var(--raio-borda-padrao);
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-max-width: 650px;
-width: 90%;
+
+#tela-splash .splash-content { /* Conteúdo do modal branco */
+    position: relative; /* Para o z-index funcionar e para contexto de posicionamento interno */
+    z-index: 2; /* Fica na frente do .splash-background */
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 35px 50px;
+    border-radius: var(--raio-borda-padrao);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    max-width: 650px; /* Limita a largura máxima do modal */
+    width: 90%;       /* Faz o modal ser responsivo, mas não muito largo */
+    /* O conteúdo interno (logo, h1, p) será alinhado pelo text-align: center de #tela-splash.ativa */
+    /* ou por flexbox se você adicionar display:flex ao .splash-content e centralizar seus filhos */
 }
+
 #tela-splash .splash-logo {
-max-width: 180px; margin-bottom: 25px;
+    max-width: 180px; margin-bottom: 25px;
 }
 #tela-splash h1 {
-font-size: clamp(2em, 5vw, 2.8em);
-color: var(--cor-primaria);
-margin-bottom: 15px;
-font-weight: 800; /* Mais destaque */
+    font-size: clamp(2em, 5vw, 2.8em);
+    color: var(--cor-primaria);
+    margin-bottom: 15px;
+    font-weight: 800; /* Mais destaque */
 }
 #tela-splash .splash-info p {
-font-size: clamp(1em, 2.2vw, 1.15em);
-color: var(--cor-texto-secundario);
-margin-bottom: 10px; line-height: 1.7;
+    font-size: clamp(1em, 2.2vw, 1.15em);
+    color: var(--cor-texto-secundario);
+    margin-bottom: 10px; line-height: 1.7;
 }
 #tela-splash .loader-container { margin: 30px 0; }
 #tela-splash .loader {
-border: 7px solid var(--cor-fundo);
-border-top: 7px solid var(--cor-primaria);
-border-radius: 50%;
-width: 60px; height: 60px;
-animation: spin 1s linear infinite;
-margin: 0 auto 15px auto;
+    border: 7px solid var(--cor-fundo);
+    border-top: 7px solid var(--cor-primaria);
+    border-radius: 50%;
+    width: 60px; height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px auto;
 }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 #tela-splash #loading-status { font-size: 1.05em; color: var(--cor-texto-secundario); font-style: italic; }
 #tela-splash #btn-iniciar-cadastro {
-padding: 15px 35px; font-size: 1.2em; margin-top: 25px;
-background-color: var(--cor-sucesso); /* Verde para iniciar */
+    padding: 15px 35px; font-size: 1.2em; margin-top: 25px;
+    background-color: var(--cor-sucesso); /* Verde para iniciar */
 }
 #tela-splash #btn-iniciar-cadastro:hover {
-background-color: color-mix(in srgb, var(--cor-sucesso) 85%, black);
+    background-color: color-mix(in srgb, var(--cor-sucesso) 85%, black);
 }
 
 /* === Tela Cadastro === */
@@ -874,4 +913,11 @@ box-shadow: 0 -3px 8px rgba(0,0,0,0.1);
     #jogadores-ul li { flex-direction: column; align-items: flex-start; gap: 5px;}
     .player-actions { margin-top: 5px; margin-left: 0; }
     #pergunta-opcoes button { font-size: 0.9em; padding: 10px; }
+}
+
+@media (max-width: 768px) {
+    body:not(.splash-ativo) { /* Aplicar padding apenas se o splash NÃO estiver ativo */
+        padding: 15px;
+        padding-bottom: 80px; /* Mais padding no rodapé para telas menores */
+    }
 }

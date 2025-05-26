@@ -101,7 +101,7 @@ const animations = {
         const intervalTime = 70;
         const rollInterval = setInterval(() => {
             const randomFace = Math.floor(Math.random() * 6) + 1;
-            uiInstance.imgDado.src = `assets/images/dice_${randomFace}.png`;
+            uiInstance.imgDado.src = `assets/images/dice/dice_${randomFace}.png`;
             uiInstance.imgDado.style.transform = `rotate(${Math.random() * 30 - 15}deg) scale(1.1)`;
             rolls++;
             if (rolls >= maxRolls) {

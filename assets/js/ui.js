@@ -23,6 +23,7 @@ const ui = {
     perguntaDificuldadeDisplay: document.getElementById('pergunta-dificuldade-display'),
     perguntaAnoTurmaDisplay: document.getElementById('pergunta-ano-turma-display'),
     perguntaBimestreDisplay: document.getElementById('pergunta-bimestre-display'),
+    perguntaComponenteDisplay: document.getElementById('pergunta-componente-display'), // NOVO
 
     podiumElements: {
         lugar1: document.getElementById('lugar-1'),
@@ -221,15 +222,18 @@ const ui = {
 
     showDiceResult(result) {
         this.resultadoDado.textContent = result;
-        this.imgDado.src = `assets/images/dice_${result}.png`;
+        this.imgDado.src = `assets/images/dice/dice_${result}.png`;
     },
 
     showQuestionModal(question, onAnswerCallback) {
+        if (this.perguntaComponenteDisplay) { // NOVO
+            this.perguntaComponenteDisplay.textContent = `Componente: ${question.componente_curricular || 'N/D'}`;
+        }
         if (this.perguntaBimestreDisplay) {
             this.perguntaBimestreDisplay.textContent = `Bimestre: ${question.bimestre || 'N/D'}`;
         }
         if (this.perguntaCategoriaDisplay) {
-            this.perguntaCategoriaDisplay.textContent = `Componente: ${question.categoria || 'N/D'}`;
+            this.perguntaCategoriaDisplay.textContent = `Conteúdo: ${question.categoria || 'N/D'}`;
         }
         if (this.perguntaDificuldadeDisplay) {
             this.perguntaDificuldadeDisplay.textContent = `Dificuldade: ${question.dificuldade || 'N/D'}`;
@@ -516,7 +520,7 @@ const ui = {
         if (this.jogadorAtualNome) this.jogadorAtualNome.textContent = '-';
         if (this.jogadorAtualPontos) this.jogadorAtualPontos.textContent = '0';
         if (this.resultadoDado) this.resultadoDado.textContent = '-';
-        if (this.imgDado) this.imgDado.src = 'assets/images/dice_placeholder.png';
+        if (this.imgDado) this.imgDado.src = 'assets/images/dice/dice_placeholder.png';
 
         this.removeConfetti();
         const podiumElementsArray = [

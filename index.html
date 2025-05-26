@@ -8,18 +8,19 @@
     <meta name="description" content="Jogo de tabuleiro digital com conteúdo pedagógico personalizável.">
     <meta name="author" content="Willians Magán da Silva">
     <meta name="copyright" content="© 2025 WMS Tecnologia/Willians Magán da Silva">
-    <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon"> <!-- Sugestão: Adicionar um favicon -->
+    <link rel="icon" href="./assets/images/logo/logotipo.png" type="image/x-icon"> <!-- Sugestão: Adicionar um favicon -->
 </head>
 <body>
-    <div id="tela-splash" class="tela ativa">
+    <!-- SUGESTÃO DEPOIS (JavaScript vai adicionar/remover 'ativa' para mostrar/esconder): -->
+    <div id="tela-splash" class="ativa"> <!-- Ou apenas id="tela-splash" se o JS já controla a 'ativa' -->
         <div class="splash-background"></div>
         <div class="splash-content">
-            <img src="./assets/images/logo-jogo.png" alt="Logo do Jogo" class="splash-logo">
-            <h1>Bem-vindo ao Desafio do Conhecimento!</h1> <!-- Nome mais chamativo -->
+            <img src="./assets/images/logo/logotipo.png" alt="Logo do Jogo" class="splash-logo">
+            <h1>Bem-vindo ao Desafio do Conhecimento!</h1>
             <div class="splash-info">
                 <p>Um jogo educativo e divertido para testar seus conhecimentos e aprender brincando.</p>
                 <p>Desenvolvido por: Willians Magán da Silva</p>
-                <p>Versão: 1.1.0</p> <!-- Atualizar versão -->
+                <p>Versão: 1.1.0</p>
             </div>
             <div class="loader-container">
                 <div class="loader"></div>
@@ -81,11 +82,11 @@
         <div class="config-section config-filtros-perguntas">
             <h2>Filtros para os Desafios (Perguntas):</h2>
 
-            <!-- NOVO: Filtro de Bimestre -->
+            <!-- NOVO: Filtro de Componente Curricular -->
             <div class="filtro-container">
-                <label>Bimestre dos Desafios:</label>
-                <div id="checkbox-container-bimestre" class="checkbox-group">
-                    <!-- Checkboxes de bimestre serão populados pelo JS -->
+                <label>Componente Curricular (Ex: Matemática, Português):</label>
+                <div id="checkbox-container-componente" class="checkbox-group">
+                    <!-- Checkboxes de componente serão populados pelo JS -->
                 </div>
             </div>
 
@@ -97,10 +98,40 @@
                 </div>
             </div>
 
+            <!-- NOVO: Filtro de Bimestre -->
             <div class="filtro-container">
-                <label>Componente Curricular (Matéria):</label>
-                <div id="checkbox-container-categoria" class="checkbox-group">
-                    <!-- Checkboxes de categoria (componente) serão populados pelo JS -->
+                <label>Bimestre dos Desafios:</label>
+                <div id="checkbox-container-bimestre" class="checkbox-group">
+                    <!-- Checkboxes de bimestre serão populados pelo JS -->
+                </div>
+            </div>
+
+            <!-- MODIFICADO: Renomear o label e o ID do container de categoria -->
+            <div class="filtro-container">
+                <label>Conteúdo Específico / Tópico (Ex: Potenciação, Verbos):</label>
+                <div id="checkbox-container-conteudo" class="checkbox-group"> <!-- ID MODIFICADO -->
+                    <!-- Checkboxes de conteúdo (antiga categoria) serão populados pelo JS -->
+                </div>
+            </div>
+
+            <div class="config-section">
+                <h2>Configuração de Pontuação por Dificuldade:</h2>
+                <div class="config-grid" id="pontuacao-dificuldade-container">
+                    <!-- Campos serão populados dinamicamente ou podem ser fixos se você souber os níveis -->
+                    <!-- Exemplo de como seria para "Fácil", "Médio", "Difícil": -->
+                    <div class="config-item">
+                        <label for="pontos-facil">Pontos para Perguntas Fáceis:</label>
+                        <input type="number" id="pontos-facil" value="10" min="1">
+                    </div>
+                    <div class="config-item">
+                        <label for="pontos-medio">Pontos para Perguntas Médias:</label>
+                        <input type="number" id="pontos-medio" value="15" min="1">
+                    </div>
+                    <div class="config-item">
+                        <label for="pontos-dificil">Pontos para Perguntas Difíceis:</label>
+                        <input type="number" id="pontos-dificil" value="20" min="1">
+                    </div>
+                    <!-- Se quiser mais níveis, adicione mais campos aqui ou popule dinamicamente -->
                 </div>
             </div>
 
@@ -130,7 +161,7 @@
 
             <aside id="sidebar-jogo">
                 <div id="controle-dado" class="sidebar-card">
-                    <img src="./assets/images/dice_placeholder.png" alt="Dado Mágico" id="img-dado">
+                    <img src="./assets/images/dice/dice_placeholder.png" alt="Dado Mágico" id="img-dado">
                     <button id="btn-lancar-dado">Lançar Dado Mágico</button>
                     <p>Sorte Lançada: <span id="resultado-dado">-</span></p>
                     <p id="roll-dice-timer-display" style="visibility: hidden;"></p>
@@ -154,8 +185,9 @@
         <div id="modal-pergunta" class="modal escondido">
             <div class="modal-conteudo">
                 <div class="pergunta-meta-info">
-                    <span id="pergunta-bimestre-display">Bimestre: -</span> <!-- NOVO -->
-                    <span id="pergunta-categoria-display">Componente: -</span>
+                    <span id="pergunta-componente-display">Componente: -</span> <!-- NOVO -->
+                    <span id="pergunta-bimestre-display">Bimestre: -</span>
+                    <span id="pergunta-categoria-display">Conteúdo: -</span> <!-- Label alterada -->
                     <span id="pergunta-dificuldade-display">Dificuldade: -</span>
                     <span id="pergunta-ano-turma-display">Ano/Turma: -</span>
                 </div>
@@ -229,8 +261,14 @@
                 </table>
             </div>
         </div>
+
         <button id="btn-jogar-novamente">Nova Expedição!</button>
     </div>
+
+    <footer id="rodape-principal">
+        <p>© 2025 WMS Tecnologia. Todos os direitos reservados.</p>
+        <p>Desenvolvido com <span class="heart-icon">❤</span> por Willians Magán da Silva (contato@wmstecnologia.com.br)</p>
+    </footer>
 
     <script src="./assets/js/player.js"></script>
     <script src="./assets/js/questions.js"></script>
@@ -239,11 +277,6 @@
     <script src="./assets/js/ui.js"></script>
     <script src="./assets/js/gameLogic.js"></script>
     <script src="./assets/js/main.js"></script>
-
-    <footer id="rodape-principal">
-        <p>© 2025 WMS Tecnologia. Todos os direitos reservados.</p>
-        <p>Desenvolvido com <span class="heart-icon">❤</span> por Willians Magán da Silva (contato@wmstecnologia.com.br)</p>
-    </footer>
 
 </body>
 </html>
